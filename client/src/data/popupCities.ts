@@ -505,7 +505,7 @@ export const popupCities: PopupCity[] = [
     }
   },
   {
-    name: "ShanHaiWoo",
+    name: "ShanHaiWoo 2",
     status: "FINISHED",
     brand: "🏙️✨ SHANHAIWOO",
     year: 2024,
