@@ -579,6 +579,21 @@ export const popupCities: PopupCity[] = [
       country: "PORTUGAL"
     }
   },
+  {
+    name: "Zanzalu 2",
+    status: "UPCOMING",
+    brand: "🏙️✨ ZANZALU",
+    year: 2024,
+    dateRange: "June 21 → July 19, 2025",
+    websiteUrl: "https://zanzalu.wpcomstaging.com/",
+    twitterUrl: "https://x.com/_zanzalu",
+    description: "Zanzalu is a community of builders, entrepreneurs, and innovators who are working together to catalyze a growth ecosystem in Zanzibar.",
+    oneLiner: "Zanzalu is a community of builders, entrepreneurs, and innovators who are working together to catalyze a growth ecosystem in Zanzibar.",
+    location: {
+      city: "Fumba Town",
+      country: "TANZANIA"
+    }
+  },
 
   // ... I'll continue with the rest in the next message to avoid length limits
 ];

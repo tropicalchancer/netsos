@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import type { PopupCity } from '../types';
 import { ExternalLink, Twitter, Calendar, MapPin } from 'lucide-react';
 

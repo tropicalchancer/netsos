@@ -1,33 +1,41 @@
+
+import { describe, test, expect, vi } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { FilterBar } from './FilterBar'
 import type { PopupCity } from '../types'
 
 const mockCities: PopupCity[] = [
-  {
-    name: "City One",
-    brand: "Brand A",
-    dateRange: "2024-03-01 → 2024-03-31",
-    websiteUrl: "https://test1.com",
-    twitterUrl: "https://twitter.com/test1",
-    oneLiner: "Test one liner 1",
-    location: {
-      city: "Berlin",
-      country: "Germany"
+    {
+      name: "City One",
+      status: "UPCOMING",
+      brand: "Brand A",
+      year: 2024,
+      dateRange: "2024-03-01 → 2024-03-31",
+      websiteUrl: "https://test1.com",
+      twitterUrl: "https://twitter.com/test1",
+      description: "Full description 1",
+      oneLiner: "Test one liner 1",
+      location: {
+        city: "Berlin",
+        country: "Germany"
+      }
+    },
+    {
+      name: "City Two",
+      status: "ON NOW",
+      brand: "Brand B",
+      year: 2024,
+      dateRange: "2024-04-01 → 2024-04-30",
+      websiteUrl: "https://test2.com",
+      twitterUrl: "https://twitter.com/test2",
+      description: "Full description 2",
+      oneLiner: "Test one liner 2",
+      location: {
+        city: "Paris",
+        country: "France"
+      }
     }
-  },
-  {
-    name: "City Two",
-    brand: "Brand B",
-    dateRange: "2024-04-01 → 2024-04-30",
-    websiteUrl: "https://test2.com",
-    twitterUrl: "https://twitter.com/test2",
-    oneLiner: "Test one liner 2",
-    location: {
-      city: "Paris",
-      country: "France"
-    }
-  }
-]
+  ]
 
 describe('FilterBar', () => {
   test('renders filter inputs', () => {

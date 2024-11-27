@@ -1,13 +1,17 @@
+import { describe, test, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { CityCard } from './CityCard'
 import type { PopupCity } from '../types'
 
 const mockCity: PopupCity = {
   name: "Test City",
+  status: "UPCOMING", // Added
   brand: "Test Brand",
+  year: 2024,        // Added
   dateRange: "2024-03-01 → 2024-03-31",
   websiteUrl: "https://test.com",
   twitterUrl: "https://twitter.com/test",
+  description: "Full test description", // Added
   oneLiner: "Test one liner",
   location: {
     city: "Test Location",

@@ -4,11 +4,6 @@ import type { PopupCity, PopupCityStatus, FilterState } from '../types';
 import { CityCard } from './CityCard';
 import { FilterBar } from './FilterBar';
 
-const statusPriority: Record<PopupCityStatus, number> = {
-  'ON NOW': 0,
-  'UPCOMING': 1,
-  'FINISHED': 2
-};
 
 const monthMap: Record<string, number> = {
   'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3, 'May': 4, 'Jun': 5,

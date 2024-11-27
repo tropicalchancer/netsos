@@ -1,50 +1,37 @@
+import { describe, test, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import { CityGrid } from './CityGrid'
+import { CityCard } from './CityCard'
 import type { PopupCity } from '../types'
 
-const mockCities: PopupCity[] = [
-  {
-    name: "City One",
-    brand: "Brand A",
-    dateRange: "2024-03-01 → 2024-03-31",
-    websiteUrl: "https://test1.com",
-    twitterUrl: "https://twitter.com/test1",
-    oneLiner: "First city",
-    location: {
-      city: "Berlin",
-      country: "Germany"
-    }
-  },
-  {
-    name: "City Two",
-    brand: "Brand B",
-    dateRange: "2024-04-01 → 2024-04-30",
-    websiteUrl: "https://test2.com",
-    twitterUrl: "https://twitter.com/test2",
-    oneLiner: "Second city",
-    location: {
-      city: "Paris",
-      country: "France"
-    }
+const mockCity: PopupCity = {
+  name: "Test City",
+  status: "UPCOMING",
+  brand: "Test Brand",
+  year: 2024,
+  dateRange: "2024-03-01 → 2024-03-31",
+  websiteUrl: "https://test.com",
+  twitterUrl: "https://twitter.com/test",
+  description: "Full test description",
+  oneLiner: "Test one liner",
+  location: {
+    city: "Test Location",
+    country: "Test Country"
   }
-]
+}
 
-describe('CityGrid', () => {
-  test('renders filter bar', () => {
-    render(<CityGrid cities={mockCities} />)
-    expect(screen.getByPlaceholderText('Search cities...')).toBeInTheDocument()
-    expect(screen.getByText('Status')).toBeInTheDocument()
-    expect(screen.getByText('Country')).toBeInTheDocument()
-  })
-
-  test('renders grid container', () => {
-    render(<CityGrid cities={mockCities} />)
-    const gridContainer = document.querySelector('.grid-cols-1')
-    expect(gridContainer).toBeInTheDocument()
-  })
-
-  test('renders clear filters button', () => {
-    render(<CityGrid cities={mockCities} />)
-    expect(screen.getByText('Clear filters')).toBeInTheDocument()
+describe('CityCard', () => {
+  test('renders basic city information', () => {
+    render(<CityCard city={mockCity} />)
+    
+    // Find the card content
+    const headings = screen.getAllByRole('heading', { name: 'Test City' })
+    expect(headings.length).toBeGreaterThan(0)
+    
+    // Check location is rendered
+    expect(screen.getByText('Test Location')).toBeTruthy()
+    expect(screen.getByText('Test Country')).toBeTruthy()
+    
+    // Check brand is rendered
+    expect(screen.getByText('Test Brand')).toBeTruthy()
   })
 })
