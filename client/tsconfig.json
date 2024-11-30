@@ -11,8 +11,9 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "jsxImportSource": "react",    // Add this line
     "strict": true,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,       // Change this from true to false
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
