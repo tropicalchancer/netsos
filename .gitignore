@@ -19,4 +19,5 @@ db/migrations/*.log
 .vscode
 *.swp
 *.swo
-.DS_Store" > .gitignore
+.DS_Store" > .gitignorenode_modules/
+node_modules
