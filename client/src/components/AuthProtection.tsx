@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -41,9 +41,9 @@ interface ProveRequest {
 
 // Utility function to construct prove URL with proper typing
 function constructProveUrl(request: ProveRequest) {
-  const baseUrl = 'https://zupass.org/#/prove';
+  const baseUrl = "https://zupass.org/#/prove";
   const params = new URLSearchParams();
-  params.set('request', JSON.stringify(request));
+  params.set("request", JSON.stringify(request));
   return `${baseUrl}?${params.toString()}`;
 }
 
@@ -53,17 +53,31 @@ export function AuthProtection({ children }: AuthProtectionProps) {
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    const proof = urlParams.get('proof');
+    const proof = urlParams.get("proof");
+    console.log("Received proof parameter:", proof); // Debug log for tracking
+
     if (proof) {
-      setIsAuthed(true);
+      try {
+        // Assuming proof validation logic here (e.g., call an API)
+        console.log("Proof is valid. Authenticating...");
+        setIsAuthed(true);
+
+        // Remove query parameters from the URL after successful authentication
+        const newUrl = window.location.pathname;
+        window.history.replaceState({}, "", newUrl);
+      } catch (error) {
+        console.error("Error processing proof:", error);
+      }
     }
+
     setIsLoading(false);
   }, []);
 
   const handleLogin = async () => {
+    if (isLoading || isAuthed) return; // Prevent multiple calls
     try {
       setIsLoading(true);
-      
+
       // Following Zupoll's request structure with their exact group URL
       const request: ProveRequest = {
         type: "Get",
@@ -72,37 +86,36 @@ export function AuthProtection({ children }: AuthProtectionProps) {
           externalNullifier: {
             argumentType: "BigInt",
             userProvided: false,
-            value: "349792840326278579327614575712649752952729059724980772145639015969705472900"
+            value: "349792840326278579327614575712649752952729059724980772145639015969705472900",
           },
           group: {
             argumentType: "Object",
             userProvided: false,
-            remoteUrl: "https://api.zupass.org/semaphore/1"
+            remoteUrl: "https://api.zupass.org/semaphore/1",
           },
           identity: {
             argumentType: "PCD",
             pcdType: "semaphore-identity-pcd",
-            userProvided: true
+            userProvided: true,
           },
           signal: {
             argumentType: "BigInt",
             userProvided: false,
-            value: "1"
-          }
+            value: "1",
+          },
         },
         pcdType: "semaphore-group-signal",
         options: {
           title: "SIGN IN WITH ZUPASS",
           description: "Verify Zuzalu participant credential",
-          requesterUrl: window.location.origin
-        }
+          requesterUrl: window.location.origin,
+        },
       };
 
       const proveUrl = constructProveUrl(request);
       window.location.href = proveUrl;
-      
     } catch (err) {
-      console.error('Login error:', err);
+      console.error("Login error:", err);
       setIsLoading(false);
     }
   };
@@ -128,14 +141,15 @@ export function AuthProtection({ children }: AuthProtectionProps) {
           </CardHeader>
           <CardContent>
             <p className="text-zinc-300 mb-4">
-              This page requires proof of Zuzalu participant credential. Please connect with your ZuPass to verify.
+              This page requires proof of Zuzalu participant credential. Please connect with your
+              ZuPass to verify.
             </p>
-            <Button 
+            <Button
               onClick={handleLogin}
               className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-50"
               disabled={isLoading}
             >
-              {isLoading ? 'Connecting...' : 'Verify with ZuPass'}
+              {isLoading ? "Connecting..." : "Verify with ZuPass"}
             </Button>
           </CardContent>
         </Card>
