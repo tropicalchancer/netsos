@@ -5,7 +5,8 @@ import { About } from './pages/About';
 import { Experiments } from './pages/Experiments';
 import { ZuBenefits } from './pages/ZuBenefits';
 import { ErrorBoundary } from './components/ErrorBoundary';
-import { popupCities } from './data/popupCities'; // Make sure this import exists
+import { AuthProtection } from './components/AuthProtection';
+import { popupCities } from './data/popupCities';
 
 function App() {
   return (
@@ -19,7 +20,14 @@ function App() {
           />
           <Route path="/about" component={About} />
           <Route path="/experiments" component={Experiments} />
-          <Route path="/benefits" component={ZuBenefits} />
+          <Route 
+            path="/benefits" 
+            component={() => (
+              <AuthProtection>
+                <ZuBenefits />
+              </AuthProtection>
+            )} 
+          />
         </Switch>
       </div>
     </ErrorBoundary>
