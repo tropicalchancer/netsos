@@ -52,31 +52,31 @@ export function AuthProtection({ children }: AuthProtectionProps) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    console.log("AuthProtection mounted, checking URL parameters...");
     const urlParams = new URLSearchParams(window.location.search);
     const proof = urlParams.get("proof");
 
-    console.log("Debug: Current URL:", window.location.href); // Debug: Current URL
-    console.log("Debug: Proof parameter (raw):", proof); // Debug: Raw proof
-    console.log("Debug: Proof parameter (decoded):", proof ? decodeURIComponent(proof) : "null"); // Debug: Decoded proof
+    console.log("Current URL:", window.location.href); // Debug: Current URL
+    console.log("Proof parameter received:", proof); // Debug: Raw proof
 
     if (proof) {
       try {
         if (proof.length > 0) {
-          console.log("Debug: Proof is valid. Authenticating user...");
+          console.log("Proof is valid. Authenticating user...");
           setIsAuthed(true);
 
           // Remove query parameters after authentication
           const cleanUrl = window.location.pathname;
           window.history.replaceState({}, "", cleanUrl);
-          console.log("Debug: Cleaned URL:", cleanUrl);
+          console.log("Cleaned URL:", cleanUrl);
         } else {
-          console.error("Debug: Proof is invalid or empty.");
+          console.error("Proof is invalid or empty.");
         }
       } catch (error) {
         console.error("Error validating proof:", error);
       }
     } else {
-      console.warn("Debug: No proof parameter found in the URL.");
+      console.warn("No proof parameter found in the URL.");
     }
 
     setIsLoading(false);
@@ -123,7 +123,7 @@ export function AuthProtection({ children }: AuthProtectionProps) {
       };
 
       const proveUrl = constructProveUrl(request);
-      console.log("Debug: Redirecting to ZuPass Prove URL:", proveUrl); // Debug: Prove URL
+      console.log("Redirecting to ZuPass Prove URL:", proveUrl); // Debug: Prove URL
       window.location.href = proveUrl;
     } catch (err) {
       console.error("Error initiating login:", err);
