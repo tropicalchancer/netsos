@@ -14,11 +14,6 @@ function App() {
       <div className="min-h-screen bg-zinc-900">
         <Navigation />
         
-        {/* Temporary change for deployment trigger, remove after deployment */}
-        <h1 style={{ color: 'red', textAlign: 'center', margin: '1rem 0' }}>
-          Triggering a New Deployment
-        </h1>
-        
         <Switch>
           <Route 
             path="/" 

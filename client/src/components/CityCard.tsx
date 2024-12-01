@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { PopupCity } from '../types';
-import { ExternalLink, Twitter, Calendar, MapPin } from 'lucide-react';
+import { ExternalLink, Twitter, Calendar, MapPin, Image as ImageIcon } from 'lucide-react';
+import { useCityImage } from '../lib/api';
 
 // Utility to calculate current status based on dates
 function calculateStatus(dateRange: string): 'UPCOMING' | 'ON NOW' | 'FINISHED' {
@@ -23,60 +24,23 @@ function calculateStatus(dateRange: string): 'UPCOMING' | 'ON NOW' | 'FINISHED' 
     if (now < startDate) return 'UPCOMING';
     if (now > endDate) return 'FINISHED';
     return 'ON NOW';
-  } catch (error) {
+  } catch {
     return 'UPCOMING';
-  }
-}
-
-// Smart date formatter that makes dates more concise
-function formatDateRange(dateRange: string): string {
-  if (!dateRange || dateRange.includes('Invalid') || dateRange.includes('NaN')) {
-    return 'TBD';
-  }
-
-  const [start, end] = dateRange.split(' → ');
-  if (!start || !end) return dateRange;
-
-  try {
-    const startDate = new Date(start);
-    const endDate = new Date(end);
-    const formatMonth = (date: Date) => date.toLocaleString('en-US', { month: 'short' });
-    
-    const startMonth = formatMonth(startDate);
-    const endMonth = formatMonth(endDate);
-    const startDay = startDate.getDate();
-    const endDay = endDate.getDate();
-    const startYear = startDate.getFullYear();
-    const endYear = endDate.getFullYear();
-
-    if (startMonth === endMonth && startYear === endYear) {
-      return `${startMonth} ${startDay}–${endDay}`;
-    }
-
-    if (startYear === endYear) {
-      return `${startMonth} ${startDay}–${endMonth} ${endDay}`;
-    }
-
-    return `${startMonth} ${startYear}–${endMonth} ${endYear}`;
-  } catch (error) {
-    return dateRange;
   }
 }
 
 export function CityCard({ city }: { city: PopupCity }) {
   const [isHovered, setIsHovered] = useState(false);
+  const { imageData, isLoading } = useCityImage(city.location.city, city.location.country);
 
-  // Calculate the current status based on dates
   const currentStatus = calculateStatus(city.dateRange);
-
   const statusColorClass = {
     'UPCOMING': 'bg-emerald-500/20 text-emerald-300',
     'ON NOW': 'bg-blue-500/20 text-blue-300',
     'FINISHED': 'bg-zinc-500/20 text-zinc-300'
-  }[currentStatus]; // Use calculated status instead of city.status
+  }[currentStatus];
 
   const brandColorClass = 'bg-indigo-500/20 text-indigo-300';
-  const formattedDateRange = formatDateRange(city.dateRange);
 
   return (
     <div 
@@ -84,8 +48,27 @@ export function CityCard({ city }: { city: PopupCity }) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-xl" />
+      {/* Background Layer */}
+      <div className="absolute inset-0">
+        {isLoading ? (
+          <div className="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900">
+            <ImageIcon className="w-8 h-8 text-zinc-600 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-pulse" />
+          </div>
+        ) : imageData ? (
+          <div className="relative w-full h-full">
+            <img
+              src={imageData.url}
+              alt={imageData.altDescription}
+              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+          </div>
+        ) : (
+          <div className="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900" />
+        )}
+      </div>
       
+      {/* Content Layer */}
       <div className="relative h-full p-6 flex flex-col">
         {/* Top Section: Status and Brand */}
         <div className="flex flex-wrap gap-2 mb-6">
@@ -108,7 +91,7 @@ export function CityCard({ city }: { city: PopupCity }) {
         <div className="space-y-2 mt-auto">
           <div className="flex items-center gap-2 text-zinc-400 text-sm">
             <Calendar size={14} className="text-zinc-500 shrink-0" />
-            <span>{formattedDateRange}</span>
+            <span>{city.dateRange}</span>
           </div>
           
           <div className="flex items-center gap-2">
@@ -135,28 +118,46 @@ export function CityCard({ city }: { city: PopupCity }) {
             </p>
           </div>
 
-          <div className="flex gap-4">
-            {city.websiteUrl && city.websiteUrl !== 'N/A' && (
-              <a 
-                href={city.websiteUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors"
-              >
-                <ExternalLink size={16} />
-                <span>Website</span>
-              </a>
-            )}
-            {city.twitterUrl && city.twitterUrl !== 'N/A' && (
-              <a 
-                href={city.twitterUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors"
-              >
-                <Twitter size={16} />
-                <span>Twitter</span>
-              </a>
+          <div className="space-y-4">
+            <div className="flex gap-4">
+              {city.websiteUrl && city.websiteUrl !== 'N/A' && (
+                <a 
+                  href={city.websiteUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors"
+                >
+                  <ExternalLink size={16} />
+                  <span>Website</span>
+                </a>
+              )}
+              {city.twitterUrl && city.twitterUrl !== 'N/A' && (
+                <a 
+                  href={city.twitterUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors"
+                >
+                  <Twitter size={16} />
+                  <span>Twitter</span>
+                </a>
+              )}
+            </div>
+            
+            {imageData && (
+              <p className="text-xs text-zinc-500">
+                Photo by{' '}
+                <a 
+                  href={imageData.photographerUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-zinc-300"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {imageData.photographer}
+                </a>
+                {' '}on Unsplash
+              </p>
             )}
           </div>
         </div>
