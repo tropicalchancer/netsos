@@ -39,7 +39,7 @@ interface ProveRequest {
   };
 }
 
-// Utility function to construct prove URL with proper typing
+// Utility function to construct prove URL
 function constructProveUrl(request: ProveRequest) {
   const baseUrl = "https://zupass.org/#/prove";
   const params = new URLSearchParams();
@@ -54,19 +54,24 @@ export function AuthProtection({ children }: AuthProtectionProps) {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const proof = urlParams.get("proof");
-    console.log("Received proof parameter:", proof); // Debug log for tracking
+    console.log("Current URL:", window.location.href); // Debug: Current URL
+    console.log("Proof parameter received:", proof); // Debug: Proof parameter
 
     if (proof) {
       try {
-        // Assuming proof validation logic here (e.g., call an API)
-        console.log("Proof is valid. Authenticating...");
-        setIsAuthed(true);
+        // Simulate proof validation (replace with actual logic if needed)
+        if (proof.length > 0) {
+          console.log("Proof is valid. Authenticating user...");
+          setIsAuthed(true);
 
-        // Remove query parameters from the URL after successful authentication
-        const newUrl = window.location.pathname;
-        window.history.replaceState({}, "", newUrl);
+          // Remove query parameters from the URL after successful authentication
+          const cleanUrl = window.location.pathname;
+          window.history.replaceState({}, "", cleanUrl);
+        } else {
+          throw new Error("Proof is invalid or empty.");
+        }
       } catch (error) {
-        console.error("Error processing proof:", error);
+        console.error("Error validating proof:", error);
       }
     }
 
@@ -74,14 +79,15 @@ export function AuthProtection({ children }: AuthProtectionProps) {
   }, []);
 
   const handleLogin = async () => {
-    if (isLoading || isAuthed) return; // Prevent multiple calls
+    if (isLoading || isAuthed) return; // Prevent duplicate login attempts
+
     try {
       setIsLoading(true);
 
-      // Following Zupoll's request structure with their exact group URL
+      // Request payload for ZuPass
       const request: ProveRequest = {
         type: "Get",
-        returnUrl: window.location.href,
+        returnUrl: window.location.href, // Ensure this URL is accurate
         args: {
           externalNullifier: {
             argumentType: "BigInt",
@@ -113,6 +119,7 @@ export function AuthProtection({ children }: AuthProtectionProps) {
       };
 
       const proveUrl = constructProveUrl(request);
+      console.log("Redirecting to ZuPass Prove URL:", proveUrl); // Debug: ZuPass URL
       window.location.href = proveUrl;
     } catch (err) {
       console.error("Login error:", err);
