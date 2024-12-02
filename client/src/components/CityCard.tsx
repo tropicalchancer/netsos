@@ -35,12 +35,12 @@ export function CityCard({ city }: { city: PopupCity }) {
 
   const currentStatus = calculateStatus(city.dateRange);
   const statusColorClass = {
-    'UPCOMING': 'bg-emerald-500/20 text-emerald-300',
-    'ON NOW': 'bg-blue-500/20 text-blue-300',
-    'FINISHED': 'bg-zinc-500/20 text-zinc-300'
+    'UPCOMING': 'bg-emerald-500 text-white',
+    'ON NOW': 'bg-blue-500 text-white',
+    'FINISHED': 'bg-zinc-500 text-white'
   }[currentStatus];
 
-  const brandColorClass = 'bg-indigo-500/20 text-indigo-300';
+  const brandColorClass = 'bg-indigo-500 text-white';
 
   return (
     <div 
@@ -61,7 +61,8 @@ export function CityCard({ city }: { city: PopupCity }) {
               alt={imageData.altDescription}
               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+            {/* Enhanced gradient overlay for better text readability */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/40" />
           </div>
         ) : (
           <div className="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900" />
@@ -72,11 +73,11 @@ export function CityCard({ city }: { city: PopupCity }) {
       <div className="relative h-full p-6 flex flex-col">
         {/* Top Section: Status and Brand */}
         <div className="flex flex-wrap gap-2 mb-6">
-          <span className={`px-3 py-1 rounded-full text-xs font-medium ${statusColorClass}`}>
+          <span className={`px-3 py-1 rounded-full text-xs font-medium shadow-lg ${statusColorClass}`}>
             {currentStatus}
           </span>
           {city.brand && (
-            <span className={`px-3 py-1 rounded-full text-xs font-medium ${brandColorClass}`}>
+            <span className={`px-3 py-1 rounded-full text-xs font-medium shadow-lg ${brandColorClass}`}>
               {city.brand}
             </span>
           )}
@@ -84,21 +85,21 @@ export function CityCard({ city }: { city: PopupCity }) {
 
         {/* Middle Section: Title */}
         <div className="flex-1">
-          <h3 className="text-2xl font-light text-white tracking-wide">{city.name}</h3>
+          <h3 className="text-2xl font-medium text-white tracking-wide drop-shadow-lg">{city.name}</h3>
         </div>
 
         {/* Bottom Section: Date and Location */}
         <div className="space-y-2 mt-auto">
-          <div className="flex items-center gap-2 text-zinc-400 text-sm">
-            <Calendar size={14} className="text-zinc-500 shrink-0" />
+          <div className="flex items-center gap-2 text-white/90 text-sm drop-shadow-lg">
+            <Calendar size={14} className="text-white/90 shrink-0" />
             <span>{city.dateRange}</span>
           </div>
           
           <div className="flex items-center gap-2">
-            <MapPin size={14} className="text-zinc-500 shrink-0" />
-            <span className="text-zinc-300 font-medium">
+            <MapPin size={14} className="text-white/90 shrink-0" />
+            <span className="text-white font-medium drop-shadow-lg">
               {city.location.city}
-              <span className="text-zinc-500 ml-1 font-normal">
+              <span className="text-white/70 ml-1 font-normal">
                 {city.location.country}
               </span>
             </span>
@@ -107,13 +108,13 @@ export function CityCard({ city }: { city: PopupCity }) {
 
         {/* Hover State */}
         <div 
-          className={`absolute inset-0 bg-zinc-900/95 p-6 flex flex-col transition-opacity duration-300 ${
+          className={`absolute inset-0 bg-black/90 p-6 flex flex-col transition-opacity duration-300 ${
             isHovered ? 'opacity-100' : 'opacity-0 pointer-events-none'
           }`}
         >
           <div className="flex-1">
-            <h3 className="text-2xl font-light text-white tracking-wide mb-3">{city.name}</h3>
-            <p className="text-zinc-300 leading-relaxed mb-6">
+            <h3 className="text-2xl font-medium text-white tracking-wide mb-3">{city.name}</h3>
+            <p className="text-white/90 leading-relaxed mb-6">
               {city.oneLiner}
             </p>
           </div>
@@ -125,7 +126,7 @@ export function CityCard({ city }: { city: PopupCity }) {
                   href={city.websiteUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors"
+                  className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
                 >
                   <ExternalLink size={16} />
                   <span>Website</span>
@@ -136,7 +137,7 @@ export function CityCard({ city }: { city: PopupCity }) {
                   href={city.twitterUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors"
+                  className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
                 >
                   <Twitter size={16} />
                   <span>Twitter</span>
@@ -145,13 +146,13 @@ export function CityCard({ city }: { city: PopupCity }) {
             </div>
             
             {imageData && (
-              <p className="text-xs text-zinc-500">
+              <p className="text-xs text-white/60 hover:text-white/80">
                 Photo by{' '}
                 <a 
                   href={imageData.photographerUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-zinc-300"
+                  className="hover:text-white"
                   onClick={(e) => e.stopPropagation()}
                 >
                   {imageData.photographer}
