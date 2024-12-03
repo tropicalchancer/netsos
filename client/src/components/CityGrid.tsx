@@ -1,9 +1,7 @@
-// src/components/CityGrid.tsx
-import React from 'react';
+import React, { useEffect } from 'react';
 import type { PopupCity, PopupCityStatus, FilterState } from '../types';
 import { CityCard } from './CityCard';
 import { FilterBar } from './FilterBar';
-
 
 const monthMap: Record<string, number> = {
   'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3, 'May': 4, 'Jun': 5,
@@ -28,13 +26,50 @@ export function CityGrid({ cities }: { cities: PopupCity[] }) {
     return new Date(year, month, day);
   };
 
+  const getEndDate = (dateStr: string) => {
+    const currentYear = new Date().getFullYear();
+    const yearMatch = dateStr.match(/\d{4}/);
+    const year = yearMatch ? parseInt(yearMatch[0]) : currentYear;
+
+    const parts = dateStr.split('→');
+    if (parts.length < 2) return getStartDate(dateStr);
+
+    const dateparts = parts[1].trim();
+    const monthMatch = dateparts.match(/(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)/);
+    const dayMatch = dateparts.match(/\d+/);
+
+    if (!monthMatch) return new Date(year, 11, 31);
+
+    const month = monthMap[monthMatch[0]];
+    const day = dayMatch ? parseInt(dayMatch[0]) : 1;
+
+    return new Date(year, month, day);
+  };
+
+  const calculateStatus = (dateRange: string): PopupCityStatus => {
+    const now = new Date();
+    const startDate = getStartDate(dateRange);
+    const endDate = getEndDate(dateRange);
+    
+    if (now < startDate) return 'UPCOMING';
+    if (now > endDate) return 'FINISHED';
+    return 'ON NOW';
+  };
+
   const sortCities = (cityArray: PopupCity[]) => {
-    // First, group cities by status
-    const grouped = cityArray.reduce((acc, city) => {
-      if (!acc[city.status]) {
-        acc[city.status] = [];
+    // First, calculate current status for each city
+    const citiesWithCurrentStatus = cityArray.map(city => ({
+      ...city,
+      currentStatus: calculateStatus(city.dateRange)
+    }));
+
+    // Group cities by their current status
+    const grouped = citiesWithCurrentStatus.reduce((acc, city) => {
+      const status = city.currentStatus;
+      if (!acc[status]) {
+        acc[status] = [];
       }
-      acc[city.status].push(city);
+      acc[status].push(city);
       return acc;
     }, {} as Record<PopupCityStatus, PopupCity[]>);
 
@@ -61,6 +96,15 @@ export function CityGrid({ cities }: { cities: PopupCity[] }) {
     sortCities(cities)
   );
 
+  // Periodically resort cities to update statuses
+  useEffect(() => {
+    const resortInterval = setInterval(() => {
+      setFilteredCities(currentCities => sortCities(currentCities));
+    }, 60000); // Check every minute
+
+    return () => clearInterval(resortInterval);
+  }, []);
+
   const handleFilterChange = (filters: FilterState) => {
     const filtered = cities.filter(city => {
       const searchMatch = !filters.search || 
@@ -68,7 +112,7 @@ export function CityGrid({ cities }: { cities: PopupCity[] }) {
         city.location.city.toLowerCase().includes(filters.search.toLowerCase()) ||
         city.description.toLowerCase().includes(filters.search.toLowerCase());
       
-      const statusMatch = !filters.status || city.status === filters.status;
+      const statusMatch = !filters.status || calculateStatus(city.dateRange) === filters.status;
       const countryMatch = !filters.country || city.location.country === filters.country;
       const yearMatch = !filters.year || city.year === filters.year;
 
@@ -84,7 +128,13 @@ export function CityGrid({ cities }: { cities: PopupCity[] }) {
         <FilterBar onFilterChange={handleFilterChange} cities={cities} />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {filteredCities.map(city => (
-            <CityCard key={`${city.name}-${city.location.city}`} city={city} />
+            <CityCard 
+              key={`${city.name}-${city.location.city}`} 
+              city={{
+                ...city,
+                status: calculateStatus(city.dateRange) // Ensure status is current
+              }} 
+            />
           ))}
         </div>
       </div>
