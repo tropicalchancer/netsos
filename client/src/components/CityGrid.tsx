@@ -74,13 +74,19 @@ export function CityGrid({ cities }: { cities: PopupCity[] }) {
     }, {} as Record<PopupCityStatus, PopupCity[]>);
 
     // Sort each group by date
-    Object.keys(grouped).forEach(status => {
-      grouped[status as PopupCityStatus].sort((a, b) => {
-        const dateA = getStartDate(a.dateRange);
-        const dateB = getStartDate(b.dateRange);
-        return dateA.getTime() - dateB.getTime();
-      });
-    });
+// Sort each group by date
+Object.keys(grouped).forEach(status => {
+  grouped[status as PopupCityStatus].sort((a, b) => {
+    const dateA = getStartDate(a.dateRange);
+    const dateB = getStartDate(b.dateRange);
+    // Reverse sort for FINISHED cities (newest first)
+    if (status === 'FINISHED') {
+      return dateB.getTime() - dateA.getTime();
+    }
+    // Normal sort for other statuses (oldest first)
+    return dateA.getTime() - dateB.getTime();
+  });
+});
 
     // Combine groups in priority order
     const sorted = [
