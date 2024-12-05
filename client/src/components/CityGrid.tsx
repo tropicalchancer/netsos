@@ -63,50 +63,59 @@ export function CityGrid({ cities }: { cities: PopupCity[] }) {
       currentStatus: calculateStatus(city.dateRange)
     }));
 
-    // Group cities by their current status
-    const grouped = citiesWithCurrentStatus.reduce((acc, city) => {
+    // Group cities by year and status
+    const groupedByYear = citiesWithCurrentStatus.reduce((acc, city) => {
+      const year = city.year;
       const status = city.currentStatus;
-      if (!acc[status]) {
-        acc[status] = [];
+      
+      if (!acc[year]) {
+        acc[year] = {
+          'ON NOW': [],
+          'UPCOMING': [],
+          'FINISHED': []
+        };
       }
-      acc[status].push(city);
+      
+      acc[year][status].push(city);
       return acc;
-    }, {} as Record<PopupCityStatus, PopupCity[]>);
+    }, {} as Record<number, Record<PopupCityStatus, PopupCity[]>>);
 
-    // Sort each group by date
-// Sort each group by date
-Object.keys(grouped).forEach(status => {
-  grouped[status as PopupCityStatus].sort((a, b) => {
-    const dateA = getStartDate(a.dateRange);
-    const dateB = getStartDate(b.dateRange);
-    // Reverse sort for FINISHED cities (newest first)
-    if (status === 'FINISHED') {
-      return dateB.getTime() - dateA.getTime();
-    }
-    // Normal sort for other statuses (oldest first)
-    return dateA.getTime() - dateB.getTime();
-  });
-});
+    // Sort within each year and status group
+    Object.keys(groupedByYear).forEach(year => {
+      Object.keys(groupedByYear[Number(year)]).forEach(status => {
+        groupedByYear[Number(year)][status as PopupCityStatus].sort((a, b) => {
+          const dateA = getStartDate(a.dateRange);
+          const dateB = getStartDate(b.dateRange);
+          return status === 'FINISHED' 
+            ? dateB.getTime() - dateA.getTime()
+            : dateA.getTime() - dateB.getTime();
+        });
+      });
+    });
 
-    // Combine groups in priority order
-    const sorted = [
-      ...(grouped['ON NOW'] || []),
-      ...(grouped['UPCOMING'] || []),
-      ...(grouped['FINISHED'] || [])
-    ];
+    // Flatten the grouped cities while maintaining year and status order
+    const sortedCities: PopupCity[] = [];
+    Object.keys(groupedByYear)
+      .sort((a, b) => Number(b) - Number(a))
+      .forEach(year => {
+        sortedCities.push(
+          ...groupedByYear[Number(year)]['ON NOW'],
+          ...groupedByYear[Number(year)]['UPCOMING'],
+          ...groupedByYear[Number(year)]['FINISHED']
+        );
+      });
 
-    return sorted;
+    return sortedCities;
   };
 
   const [filteredCities, setFilteredCities] = React.useState<PopupCity[]>(
     sortCities(cities)
   );
 
-  // Periodically resort cities to update statuses
   useEffect(() => {
     const resortInterval = setInterval(() => {
       setFilteredCities(currentCities => sortCities(currentCities));
-    }, 60000); // Check every minute
+    }, 60000);
 
     return () => clearInterval(resortInterval);
   }, []);
@@ -128,19 +137,40 @@ Object.keys(grouped).forEach(status => {
     setFilteredCities(sortCities(filtered));
   };
 
+  // Group cities by year for display
+  const citiesByYear = React.useMemo(() => {
+    const grouped: Record<number, PopupCity[]> = {};
+    filteredCities.forEach(city => {
+      if (!grouped[city.year]) {
+        grouped[city.year] = [];
+      }
+      grouped[city.year].push(city);
+    });
+    return Object.entries(grouped).sort(([yearA], [yearB]) => Number(yearB) - Number(yearA));
+  }, [filteredCities]);
+
   return (
     <div className="min-h-screen bg-zinc-900 p-6">
       <div className="container mx-auto">
         <FilterBar onFilterChange={handleFilterChange} cities={cities} />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredCities.map(city => (
-            <CityCard 
-              key={`${city.name}-${city.location.city}`} 
-              city={{
-                ...city,
-                status: calculateStatus(city.dateRange) // Ensure status is current
-              }} 
-            />
+        <div className="space-y-12">
+          {citiesByYear.map(([year, yearCities]) => (
+            <div key={year}>
+              <h2 className="text-3xl font-light text-white/80 mb-6 border-b border-zinc-700 pb-2">
+                {year}
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {yearCities.map(city => (
+                  <CityCard 
+                    key={`${city.name}-${city.location.city}`} 
+                    city={{
+                      ...city,
+                      status: calculateStatus(city.dateRange)
+                    }} 
+                  />
+                ))}
+              </div>
+            </div>
           ))}
         </div>
       </div>
