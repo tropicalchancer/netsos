@@ -7,6 +7,7 @@ import { ZuBenefits } from './pages/ZuBenefits';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { AuthProtection } from './components/AuthProtection';
 import { popupCities } from './data/popupCities';
+import { AdminPage } from './pages/Admin';
 
 function App() {
   return (
@@ -26,6 +27,14 @@ function App() {
             component={() => (
               <AuthProtection>
                 <ZuBenefits />
+              </AuthProtection>
+            )} 
+          />
+          <Route 
+            path="/admin" 
+            component={() => (
+              <AuthProtection>
+                <AdminPage />
               </AuthProtection>
             )} 
           />
