@@ -23,7 +23,7 @@ export const popupCities: PopupCity[] = [
     status: "UPCOMING",
     brand: "🏙️✨ ARC",
     year: 2025,
-    dateRange: "May 1, 2025",
+    dateRange: "March 1, 2025",
     websiteUrl: "https://www.xn--2ca.city/",
     twitterUrl: null,
     description: "Ârc builds cities that allow great people to do great things.",
@@ -64,18 +64,18 @@ export const popupCities: PopupCity[] = [
     }
   },
   {
-    name: "ARC Offshore",
+    name: "ZuAfrique",
     status: "UPCOMING",
     brand: "🏙️✨ TBD",
     year: 2025,
-    dateRange: "March 1, 2025",
-    websiteUrl: "https://www.xn--2ca.city/",
-    twitterUrl: null,
-    description: "TBD",
-    oneLiner: "TBD.",
+    dateRange: "May 1, 2025",
+    websiteUrl: "https://zuafrique.onrender.com/",
+    twitterUrl: "https://x.com/zuafrique",
+    description: "Empowering African blockchain builders to innovate, collaborate, and create real-world projects.",
+    oneLiner: "Empowering African blockchain builders to innovate, collaborate, and create real-world projects.",
     location: {
-      city: "TBD",
-      country: "TBD"
+      city: "Kilifi",
+      country: "KENYA"
     }
   },
   {
@@ -352,7 +352,7 @@ export const popupCities: PopupCity[] = [
   {
     name: "ZuConnect",
     status: "FINISHED",
-    brand: "🏙️✨ ZUZALU (pre-decentralization)",
+    brand: "🏙️✨ ZUZALU",
     year: 2023,
     dateRange: "October 29, 2023 → November 11, 2023",
     websiteUrl: "N / A",
@@ -397,7 +397,7 @@ export const popupCities: PopupCity[] = [
   {
     name: "Zuzalu Montenegro",
     status: "FINISHED",
-    brand: "🏙️✨ ZUZALU (pre-decentralization)",
+    brand: "🏙️✨ ZUZALU",
     year: 2023,
     dateRange: "March 25, 2023 → May 25, 2023",
     websiteUrl: "N / A",
@@ -583,7 +583,7 @@ export const popupCities: PopupCity[] = [
     name: "Zanzalu 2",
     status: "UPCOMING",
     brand: "🏙️✨ ZANZALU",
-    year: 2024,
+    year: 2025,
     dateRange: "June 21 → July 19, 2025",
     websiteUrl: "https://zanzalu.wpcomstaging.com/",
     twitterUrl: "https://x.com/_zanzalu",
@@ -594,7 +594,70 @@ export const popupCities: PopupCity[] = [
       country: "TANZANIA"
     }
   },
+  {
+    name: "ZuEthiopia",
+    status: "UPCOMING",
+    brand: "🏙️✨ TBD",
+    year: 2025,
+    dateRange: "January 21 → February 21, 2025",
+    websiteUrl: "TBD",
+    twitterUrl: "https://x.com/MEARAFTADEWOS/status/1863839823091364243",
+    description: "TBD",
+    oneLiner: "TBD",
+    location: {
+      city: "Addis Ababa",
+      country: "ETHIOPIA"
+    }
+  },
+  {
+    name: "Pirate Island",
+    status: "UPCOMING",
+    brand: "🏙️✨ TBD",
+    year: 2025,
+    dateRange: "September 20 → October 20, 2025",
+    websiteUrl: "TBD",
+    twitterUrl: "TBD",
+    description: "TBD",
+    oneLiner: "TBD",
+    location: {
+      city: "TBD",
+      country: "GREECE"
+    }
+  },
+  {
+    name: "Ipê Village",
+    status: "UPCOMING",
+    brand: "🏙️✨ Ipê City",
+    year: 2025,
+    dateRange: "April 22 → May 22, 2025",
+    websiteUrl: "https://ipe.city/popup",
+    twitterUrl: "https://x.com/ipecity",
+    description: "Join us in building the cities and governments of the future with crypto and AI on Florianópolis, a stunning island.",
+    oneLiner: "Building the cities and governments of the future with crypto and AI on Florianópolis.",
+    location: {
+      city: "Florianópolis",
+      country: "BRAZIL"
+    }
+  },
 
+//template
+  /*
+    {
+    name: "",
+    status: "",
+    brand: "🏙️✨ ",
+    year: ,
+    dateRange: "June 21 → July 19, 2025",
+    websiteUrl: "",
+    twitterUrl: "",
+    description: "",
+    oneLiner: "",
+    location: {
+      city: "",
+      country: ""
+    }
+  },
+  */
   // ... I'll continue with the rest in the next message to avoid length limits
 ];
 
