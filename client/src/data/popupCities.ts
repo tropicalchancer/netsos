@@ -639,6 +639,22 @@ export const popupCities: PopupCity[] = [
       country: "BRAZIL"
     }
   },
+  {
+    name: "ZuDetroit",
+    status: "UPCOMING",
+    brand: "🏙️✨ TBD",
+    year: 2025,
+    dateRange: "May 1st, 2025",
+    websiteUrl: "TBD",
+    twitterUrl: "TBD",
+    description: "TBD",
+    oneLiner: "TBD",
+    location: {
+      city: "Detroit",
+      country: "USA"
+    }
+  },
+  
 
 //template
   /*
