@@ -595,7 +595,7 @@ export const popupCities: PopupCity[] = [
     }
   },
   {
-    name: "ZuEthiopia",
+    name: "ETHiopia",
     status: "UPCOMING",
     brand: "🏙️✨ TBD",
     year: 2025,

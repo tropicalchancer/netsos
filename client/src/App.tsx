@@ -8,6 +8,7 @@ import { ErrorBoundary } from './components/ErrorBoundary';
 import { AuthProtection } from './components/AuthProtection';
 import { popupCities } from './data/popupCities';
 import { AdminPage } from './pages/Admin';
+import { VenuePartners } from "./pages/VenuePartners.tsx";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           />
           <Route path="/about" component={About} />
           <Route path="/experiments" component={Experiments} />
+          <Route path="/venues" component={VenuePartners} />
           <Route 
             path="/benefits" 
             component={() => (

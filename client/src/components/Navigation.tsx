@@ -6,6 +6,7 @@ export function Navigation() {
   const [isAbout] = useRoute('/about');
   const [isExperiments] = useRoute('/experiments');
   const [isBenefits] = useRoute('/benefits');
+  const [isVenues] = useRoute('/venues');
 
   const linkClass = (active: boolean) =>
     `px-4 py-2 text-sm transition-colors ${
@@ -24,6 +25,9 @@ export function Navigation() {
           <div className="flex space-x-2">
             <Link href="/">
               <a className={linkClass(isHome)}>Cities</a>
+            </Link>
+            <Link href="/venues">
+              <a className={linkClass(isVenues)}>Venues</a>
             </Link>
             <Link href="/about">
               <a className={linkClass(isAbout)}>About</a>
