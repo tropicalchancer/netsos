@@ -620,7 +620,7 @@ export const popupCities: PopupCity[] = [
     description: "TBD",
     oneLiner: "TBD",
     location: {
-      city: "TBD",
+      city: "Cyclades",
       country: "GREECE"
     }
   },
