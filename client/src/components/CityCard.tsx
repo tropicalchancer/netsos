@@ -29,6 +29,16 @@ function calculateStatus(dateRange: string): 'UPCOMING' | 'ON NOW' | 'FINISHED' 
   }
 }
 
+// Utility to create UTM-tracked URLs for Unsplash attribution
+function getUnsplashUrl(url: string, photographer: boolean = false) {
+  const baseParams = new URLSearchParams({
+    utm_source: 'netsos',
+    utm_medium: 'referral',
+    utm_campaign: photographer ? 'photographer-credit' : 'api-credit'
+  });
+  return `${url}?${baseParams.toString()}`;
+}
+
 export function CityCard({ city }: { city: PopupCity }) {
   const [isHovered, setIsHovered] = useState(false);
   const { imageData, isLoading } = useCityImage(city.location.city, city.location.country);
@@ -104,6 +114,31 @@ export function CityCard({ city }: { city: PopupCity }) {
               </span>
             </span>
           </div>
+
+          {/* Unsplash Attribution (Always Visible) */}
+          {imageData && (
+            <div className="text-xs text-white/60 mt-2">
+              <a 
+                href={getUnsplashUrl(imageData.photographerUrl, true)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white transition-colors"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {imageData.photographer}
+              </a>
+              {' / '}
+              <a 
+                href={getUnsplashUrl('https://unsplash.com')}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white transition-colors"
+                onClick={(e) => e.stopPropagation()}
+              >
+                Unsplash
+              </a>
+            </div>
+          )}
         </div>
 
         {/* Hover State */}
@@ -144,22 +179,6 @@ export function CityCard({ city }: { city: PopupCity }) {
                 </a>
               )}
             </div>
-            
-            {imageData && (
-              <p className="text-xs text-white/60 hover:text-white/80">
-                Photo by{' '}
-                <a 
-                  href={imageData.photographerUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  {imageData.photographer}
-                </a>
-                {' '}on Unsplash
-              </p>
-            )}
           </div>
         </div>
       </div>

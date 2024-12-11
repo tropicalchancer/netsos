@@ -654,7 +654,37 @@ export const popupCities: PopupCity[] = [
       country: "USA"
     }
   },
-  
+  {
+    //https://lu.ma/frontier-tower-sf
+    name: "Berlin House",
+    status: "UPCOMING",
+    brand: "🏙️✨ FRONTIER TOWER",
+    year: 2025,
+    dateRange: "April 4 → May 29, 2025",
+    websiteUrl: "https://berlinhouse.com/",
+    twitterUrl: "https://x.com/berlinhouse_sf",
+    description: "We are a 16-floor community innovation hub in the heart of San Francisco, dedicated to advancing frontier technologies, arts, and sciences",
+    oneLiner: "A 16-floor community innovation hub in the heart of San Francisco, dedicated to advancing frontier technologies, arts, and sciences",
+    location: {
+      city: "San Francisco",
+      country: "USA"
+    },
+  },
+  {
+    name: "Vitalist Bay",
+    status: "UPCOMING",
+    brand: "🏙️✨ TBD",
+    year: 2025,
+    dateRange: "February 5 → March 23, 2025",
+    websiteUrl: "https://www.vitalistbay.com/",
+    twitterUrl: "TBD",
+    description: "Vitalist Bay is an 8-week longevity zone bringing the world’s best minds together to extend human healthspan & solve aging.",
+    oneLiner: "An 8-week longevity zone bringing the world’s best minds together to extend human healthspan & solve aging.",
+    location: {
+      city: "Berkeley",
+      country: "USA"
+    }
+  },
 
 //template
   /*
