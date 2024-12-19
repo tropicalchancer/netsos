@@ -1,6 +1,5 @@
 // app/page.tsx
 import { CitiesGrid } from "./cities-grid"
-import { IndexHeader } from "@/components/ui/index-header"
 import { popupCities } from "@/data/popup-cities"
 import { NavigationLayout } from "@/components/layout/navigation-layout";
 
@@ -11,10 +10,9 @@ export default function Home() {
   return (
     <NavigationLayout>
       <div>
-        <IndexHeader
-          description={`${activeCount} cities active now · ${upcomingCount} upcoming`}
-          count={popupCities.length}
-        />
+        <div className="text-center py-4 text-muted-foreground">
+          {activeCount} cities active now · {upcomingCount} upcoming · {popupCities.length} items listed
+        </div>
         <section className="py-8 md:py-12">
           <CitiesGrid />
         </section>

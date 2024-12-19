@@ -1,8 +1,4 @@
-// components/layout/site-header.tsx
 import Link from "next/link"
-//import { ThemeToggle } from "@/components/ui/theme-toggle"  // Updated import path
-import { Button } from "@/components/ui/button"
-
 
 export function SiteHeader() {
   return (
@@ -18,10 +14,7 @@ export function SiteHeader() {
             </Link>
           </nav>
         </div>
-        
         <div className="flex items-center gap-2">
-          {/* <Button variant="default">join kimchi</Button> */}
-          {/* <ThemeToggle /> */}
         </div>
       </div>
     </header>
