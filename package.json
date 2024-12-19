@@ -9,11 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@pcd/passport-interface": "^0.15.0",
+    "@pcd/zuauth": "^1.8.0",
     "@radix-ui/react-slot": "^1.1.1",
     "@radix-ui/react-tabs": "^1.1.2",
     "@types/three": "^0.171.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "ffjavascript": "^0.3.1",
     "lucide-react": "^0.468.0",
     "next": "15.1.1",
     "next-themes": "^0.4.4",
