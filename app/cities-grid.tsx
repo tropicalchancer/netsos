@@ -1,14 +1,20 @@
 'use client'
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { CityCard } from "@/components/city-card"
 import { Input } from "@/components/ui/input"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { popupCities } from "@/data/popup-cities"
 
 export function CitiesGrid() {
+  const [mounted, setMounted] = useState(false)
   const [filter, setFilter] = useState("all")
   const [search, setSearch] = useState("")
+
+  // Add mounting check
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const filteredCities = popupCities.filter(city => {
     const matchesFilter = 
@@ -25,10 +31,25 @@ export function CitiesGrid() {
     return matchesFilter && matchesSearch
   })
 
+  // Return null or loading state until mounted
+  if (!mounted) {
+    return <div className="space-y-8">
+      <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+        <div className="h-10 bg-muted rounded-md animate-pulse w-[300px]" />
+        <div className="h-9 bg-muted rounded-md animate-pulse w-[200px]" />
+      </div>
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {[1, 2, 3].map((i) => (
+          <div key={i} className="h-[200px] bg-muted rounded-lg animate-pulse" />
+        ))}
+      </div>
+    </div>
+  }
+
   return (
     <div className="space-y-8">
       <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
-        <Tabs value={filter} onValueChange={setFilter}>
+        <Tabs defaultValue="all" value={filter} onValueChange={setFilter}>
           <TabsList>
             <TabsTrigger value="all">All Cities</TabsTrigger>
             <TabsTrigger value="active">Active Now</TabsTrigger>
