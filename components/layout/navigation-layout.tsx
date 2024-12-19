@@ -1,6 +1,6 @@
 // components/layout/navigation-layout.tsx
 import React from 'react';
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
+
 
 export function NavigationLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -10,30 +10,7 @@ export function NavigationLayout({ children }: { children: React.ReactNode }) {
         {children}
         
         {/* Then the navigation tabs */}
-        <div className="mt-6 sm:mt-8">
-          <Tabs defaultValue="all" className="w-full">
-            <TabsList className="w-full justify-start space-x-2 rounded-none border-b border-border pb-px">
-              <TabsTrigger
-                value="all"
-                className="rounded-none border-b-2 border-transparent px-4 pb-4 pt-2 font-medium text-muted-foreground hover:text-foreground data-[state=active]:border-primary data-[state=active]:text-foreground"
-              >
-                All Cities
-              </TabsTrigger>
-              <TabsTrigger
-                value="active"
-                className="rounded-none border-b-2 border-transparent px-4 pb-4 pt-2 font-medium text-muted-foreground hover:text-foreground data-[state=active]:border-primary data-[state=active]:text-foreground"
-              >
-                Active Now
-              </TabsTrigger>
-              <TabsTrigger
-                value="upcoming"
-                className="rounded-none border-b-2 border-transparent px-4 pb-4 pt-2 font-medium text-muted-foreground hover:text-foreground data-[state=active]:border-primary data-[state=active]:text-foreground"
-              >
-                Upcoming
-              </TabsTrigger>
-            </TabsList>
-          </Tabs>
-        </div>
+        
       </div>
     </div>
   );
