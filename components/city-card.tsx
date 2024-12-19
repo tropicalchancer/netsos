@@ -1,15 +1,19 @@
 'use client'
 
+import Image from "next/image"
 import { Building2, Calendar, Globe, MapPin, Twitter } from "lucide-react"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { PopupCity } from "@/types/popup-city"
+import { useUnsplashImage, getUnsplashUrl } from "@/lib/utils"
 
 interface CityCardProps {
   city: PopupCity
 }
 
 export function CityCard({ city }: CityCardProps) {
+  const { image } = useUnsplashImage(city.location.city, city.location.country)
+
   const getStatusColor = (status: string) => {
     switch (status) {
       case "ON NOW":
@@ -24,7 +28,42 @@ export function CityCard({ city }: CityCardProps) {
   }
 
   return (
-    <Card className="w-full">
+    <Card className="w-full overflow-hidden">
+      {/* Image Section */}
+      {image && (
+        <div className="relative h-48 w-full">
+          <Image
+            src={image.url}
+            alt={image.altDescription}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background/80 to-transparent p-2 z-10">
+            <span className="text-xs text-white/70">
+              Photo by{' '}
+              <a 
+                href={getUnsplashUrl(image.photographerUrl, true)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white"
+              >
+                {image.photographer}
+              </a>
+              {' / '}
+              <a 
+                href={getUnsplashUrl('https://unsplash.com')}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white"
+              >
+                Unsplash
+              </a>
+            </span>
+          </div>
+        </div>
+      )}
+
       <CardHeader>
         <div className="flex items-center gap-2 mb-4">
           <Badge 
@@ -40,6 +79,7 @@ export function CityCard({ city }: CityCardProps) {
         </div>
         <h3 className="text-2xl font-bold mt-2">{city.name}</h3>
       </CardHeader>
+      
       <CardContent>
         <p className="text-gray-600 mb-6">{city.oneLiner}</p>
         <div className="space-y-4">
