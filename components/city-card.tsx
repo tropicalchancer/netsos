@@ -5,7 +5,8 @@ import { Building2, Calendar, Globe, MapPin, Twitter } from "lucide-react"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { PopupCity } from "@/types/popup-city"
-import { useUnsplashImage, getUnsplashUrl } from "@/lib/utils"
+import { useUnsplashImage } from "@/lib/hooks"
+import { getUnsplashUrl } from "@/lib/utils"
 
 interface CityCardProps {
   city: PopupCity
