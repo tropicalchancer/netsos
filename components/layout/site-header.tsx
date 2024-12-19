@@ -11,15 +11,15 @@ export function SiteHeader() {
           </Link>
         </div>
         <nav className="flex items-center space-x-4 lg:space-x-6 mx-6">
-          <Link href="/experiments" className="text-sm font-medium transition-colors hover:text-primary">
+          {/* <Link href="/experiments" className="text-sm font-medium transition-colors hover:text-primary">
             Experiments
-          </Link>
+          </Link> */}
           <Link href="/benefits" className="text-sm font-medium transition-colors hover:text-primary">
             Benefits
           </Link>
-          <Link href="/venues" className="text-sm font-medium transition-colors hover:text-primary">
+          {/* <Link href="/venues" className="text-sm font-medium transition-colors hover:text-primary">
             Venues
-          </Link>
+          </Link> */}
         </nav>
         <div className="flex flex-1 items-center justify-end space-x-4">
           <Button>join kimchi</Button>
@@ -28,4 +28,3 @@ export function SiteHeader() {
     </header>
   )
 }
-
