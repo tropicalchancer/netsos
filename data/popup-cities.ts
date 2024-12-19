@@ -114,7 +114,7 @@ export const popupCities: PopupCity[] = [
     description: "A decentralised city that accelerates longevity biotech development.",
     oneLiner: "A decentralized city accelerating longevity biotech, starting with a hub in Roatán, @Prosperahn ZEDE.",
     location: {
-      city: "Roatan",
+      city: "Roatán",
       country: "HONDURAS",
       latitude: 16.3219,
       longitude: -86.5319
@@ -369,7 +369,7 @@ export const popupCities: PopupCity[] = [
     description: "A decentralised city that accelerates longevity biotech development, starting with a permanent hub on Roatán in the jurisdiction of @Prosperahn ZEDE",
     oneLiner: "A decentralized city boosting longevity biotech, starting in Roatán, @Prosperahn ZEDE.",
     location: {
-      city: "Roatan",
+      city: "Roatán",
       country: "HONDURAS",
       latitude: 16.3219,
       longitude: -86.5319
