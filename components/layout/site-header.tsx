@@ -1,28 +1,27 @@
+// components/layout/site-header.tsx
 import Link from "next/link"
+//import { ThemeToggle } from "@/components/ui/theme-toggle"  // Updated import path
 import { Button } from "@/components/ui/button"
+
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 items-center">
-        <div className="mr-4 flex">
-          <Link href="/" className="mr-6 flex items-center space-x-2">
-            <span className="text-xl font-bold">netso villages</span>
+    <header className="sticky top-0 z-50 w-full border-b bg-background">
+      <div className="container flex h-16 items-center justify-between">
+        <div className="flex items-center gap-6">
+          <Link href="/" className="font-bold">
+            netso villages
           </Link>
+          <nav className="hidden md:flex gap-6">
+            <Link href="/benefits" className="text-foreground/60 transition-colors hover:text-foreground">
+              Benefits
+            </Link>
+          </nav>
         </div>
-        <nav className="flex items-center space-x-4 lg:space-x-6 mx-6">
-          {/* <Link href="/experiments" className="text-sm font-medium transition-colors hover:text-primary">
-            Experiments
-          </Link> */}
-          <Link href="/benefits" className="text-sm font-medium transition-colors hover:text-primary">
-            Benefits
-          </Link>
-          {/* <Link href="/venues" className="text-sm font-medium transition-colors hover:text-primary">
-            Venues
-          </Link> */}
-        </nav>
-        <div className="flex flex-1 items-center justify-end space-x-4">
-          <Button>join kimchi</Button>
+        
+        <div className="flex items-center gap-2">
+          <Button variant="default">join kimchi</Button>
+          {/* <ThemeToggle /> */}
         </div>
       </div>
     </header>

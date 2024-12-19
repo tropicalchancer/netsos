@@ -11,7 +11,6 @@ export function CitiesGrid() {
   const [filter, setFilter] = useState("all")
   const [search, setSearch] = useState("")
 
-  // Add mounting check
   useEffect(() => {
     setMounted(true)
   }, [])
@@ -31,7 +30,6 @@ export function CitiesGrid() {
     return matchesFilter && matchesSearch
   })
 
-  // Return null or loading state until mounted
   if (!mounted) {
     return <div className="space-y-8">
       <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
@@ -47,19 +45,21 @@ export function CitiesGrid() {
   }
 
   return (
-    <div className="space-y-8">
-      <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
-        <Tabs defaultValue="all" value={filter} onValueChange={setFilter}>
-          <TabsList>
-            <TabsTrigger value="all">All Cities</TabsTrigger>
-            <TabsTrigger value="active">Active Now</TabsTrigger>
-            <TabsTrigger value="upcoming">Upcoming</TabsTrigger>
-            <TabsTrigger value="finished">Finished</TabsTrigger>
-          </TabsList>
-        </Tabs>
+    <div className="container space-y-8">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div className="w-full max-w-2xl">
+          <Tabs defaultValue="all" value={filter} onValueChange={setFilter}>
+            <TabsList>
+              <TabsTrigger value="all">All Cities</TabsTrigger>
+              <TabsTrigger value="active">Active Now</TabsTrigger>
+              <TabsTrigger value="upcoming">Upcoming</TabsTrigger>
+              <TabsTrigger value="finished">Finished</TabsTrigger>
+            </TabsList>
+          </Tabs>
+        </div>
         <Input 
           placeholder="Search cities..." 
-          className="max-w-xs"
+          className="w-full sm:w-[240px]"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />

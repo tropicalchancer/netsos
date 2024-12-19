@@ -33,8 +33,8 @@ export default function RootLayout({
         <ThemeProvider>
           <div className="relative min-h-screen flex flex-col">
             <SiteHeader />
-            {/* Add a container to center content and add horizontal padding */}
-            <main className="flex-1 container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            {/* Remove the container class from main to avoid conflicting with NavigationLayout */}
+            <main className="flex-1">
               {children}
             </main>
           </div>
