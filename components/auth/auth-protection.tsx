@@ -1,4 +1,3 @@
-// components/auth/auth-protection.tsx
 "use client"
 
 import React, { useState, useEffect } from "react"
@@ -59,22 +58,25 @@ export function AuthProtection({ children }: AuthProtectionProps) {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search)
-    const proof = urlParams.get("proof")
+    // Only run on client side
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search)
+      const proof = urlParams.get("proof")
 
-    if (proof) {
-      try {
-        if (proof.length > 0) {
-          setIsAuthed(true)
-          const cleanUrl = window.location.pathname
-          window.history.replaceState({}, "", cleanUrl)
+      if (proof) {
+        try {
+          if (proof.length > 0) {
+            setIsAuthed(true)
+            const cleanUrl = window.location.pathname
+            window.history.replaceState({}, "", cleanUrl)
+          }
+        } catch (error) {
+          console.error("Error validating proof:", error)
         }
-      } catch (error) {
-        console.error("Error validating proof:", error)
       }
-    }
 
-    setIsLoading(false)
+      setIsLoading(false)
+    }
   }, [])
 
   const handleLogin = async () => {
@@ -83,15 +85,16 @@ export function AuthProtection({ children }: AuthProtectionProps) {
     try {
       setIsLoading(true)
       
-      const currentPath = window.location.pathname
-      const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 
-        (process.env.NODE_ENV === "production"
-          ? "https://netsovillages.com"
-          : "http://localhost:3000")
+      // Get the current URL components
+      const currentOrigin = typeof window !== 'undefined' ? window.location.origin : ''
+      const currentPath = typeof window !== 'undefined' ? window.location.pathname : ''
+      
+      // Construct the return URL using the actual origin
+      const returnUrl = `${currentOrigin}${currentPath}`
 
       const request: ProveRequest = {
         type: "Get",
-        returnUrl: `${baseUrl}${currentPath}`,
+        returnUrl: returnUrl,
         args: {
           externalNullifier: {
             argumentType: "BigInt",
@@ -118,7 +121,7 @@ export function AuthProtection({ children }: AuthProtectionProps) {
         options: {
           title: "SIGN IN WITH ZUPASS",
           description: "Verify Zuzalu participant credential",
-          requesterUrl: window.location.origin,
+          requesterUrl: currentOrigin,
         },
       }
 

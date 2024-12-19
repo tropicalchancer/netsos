@@ -12,7 +12,6 @@ export default function Home() {
     <NavigationLayout>
       <div>
         <IndexHeader
-          title="Discover Popup Cities Worldwide"
           description={`${activeCount} cities active now · ${upcomingCount} upcoming`}
           count={popupCities.length}
         />

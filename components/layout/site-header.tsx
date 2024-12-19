@@ -20,7 +20,7 @@ export function SiteHeader() {
         </div>
         
         <div className="flex items-center gap-2">
-          <Button variant="default">join kimchi</Button>
+          {/* <Button variant="default">join kimchi</Button> */}
           {/* <ThemeToggle /> */}
         </div>
       </div>
