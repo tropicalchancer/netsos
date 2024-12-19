@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@pcd/passport-interface": "^0.15.0",
+    "@pcd/zuauth": "^1.8.0",
     "@radix-ui/react-slot": "^1.1.1",
     "@radix-ui/react-tabs": "^1.1.2",
     "@types/three": "^0.171.0",
