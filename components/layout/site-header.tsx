@@ -8,10 +8,15 @@ export function SiteHeader() {
           <Link href="/" className="font-bold">
             netso villages
           </Link>
+          
           <nav className="hidden md:flex gap-6">
+          <Link href="/about" className="text-foreground/60 transition-colors hover:text-foreground">
+              About
+            </Link>
             <Link href="/benefits" className="text-foreground/60 transition-colors hover:text-foreground">
               Benefits
             </Link>
+           
           </nav>
         </div>
         <div className="flex items-center gap-2">
