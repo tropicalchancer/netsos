@@ -3,7 +3,6 @@ import { authenticate } from "@pcd/zuauth/server";
 import { NextRequest } from "next/server";
 
 
-const ground_url = process.env.GROUND_DOOR;
 const upper_url = process.env.UPPER_DOOR;
 
 /**
@@ -34,9 +33,13 @@ export async function POST(req: NextRequest) {
       }
     });
     console.log('Here we should open the door');
-    console.log(ground_url);
-    console.log(upper_url);
-
+    if (!upper_url) {
+      throw new Error("GROUND_DOOR environment variable is not set");
+    }
+    const response = await fetch(upper_url, {
+      method: 'GET',
+    });
+    console.log('Post message response:', response);
     return Response.json({
       nullifier: pcd.claim.nullifierHash
     });
