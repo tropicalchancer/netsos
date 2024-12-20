@@ -140,7 +140,7 @@ export default function GlobePage() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="w-full max-w-7xl">
-        <h1 className="text-4xl font-bold mb-8">Network State Villages</h1>
+        <h1 className="text-4xl font-bold mb-8">🛖 netso villages 🛖</h1>
         <Card className="w-full h-[600px] relative overflow-hidden bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
           <div ref={containerRef} className="w-full h-full" />
         </Card>
