@@ -11,7 +11,7 @@ export function SiteHeader() {
           
           <nav className="hidden md:flex gap-6">
           <Link href="/about" className="text-foreground/60 transition-colors hover:text-foreground">
-              About
+              about
             </Link>
             {/* <Link href="/benefits" className="text-foreground/60 transition-colors hover:text-foreground">
               Benefits
