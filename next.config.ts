@@ -9,8 +9,14 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'images.unsplash.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'unpkg.com',
+      }
     ],
   },
+  // Transpile three and three-globe modules
+  transpilePackages: ['three', 'three-globe'],
 }
 
 export default nextConfig

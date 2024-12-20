@@ -1,5 +1,6 @@
 'use client';
 
+// components/globe/client-globe.tsx
 import dynamic from 'next/dynamic'
 import { Card } from '@/components/ui/card'
 
@@ -24,6 +25,6 @@ const GlobeVisualization = dynamic(
   }
 )
 
-export default function GlobePage() {
+export default function ClientGlobe() {
   return <GlobeVisualization />
 }
