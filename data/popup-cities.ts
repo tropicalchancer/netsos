@@ -38,7 +38,7 @@ export const popupCities: PopupCity[] = [
   {
     name: "Zuitzerland",
     status: "UPCOMING",
-    brand: "🏙️✨ ZUITERLAND",
+    brand: "🏙️✨ ZUITZERLAND",
     year: 2025,
     dateRange: "May 1, 2025 → June 30, 2025",
     websiteUrl: "https://www.zuitzerland.ch/",
@@ -191,7 +191,7 @@ export const popupCities: PopupCity[] = [
   {
     name: "Zuitzerland",
     status: "FINISHED",
-    brand: "🏙️✨ ZUITERLAND",
+    brand: "🏙️✨ ZUITZERLAND",
     year: 2024,
     dateRange: "August 25, 2024 → September 15, 2024",
     websiteUrl: "https://www.zuitzerland.ch/",
