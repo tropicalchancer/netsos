@@ -2,6 +2,10 @@ import { allConfigs } from "@/lib/auth";
 import { authenticate } from "@pcd/zuauth/server";
 import { NextRequest } from "next/server";
 
+
+const ground_url = process.env.GROUND_DOOR;
+const upper_url = process.env.UPPER_DOOR;
+
 /**
  * Once the front-end has received a PCD from the popup window, it sends it to
  * the back-end for verification.
@@ -29,6 +33,9 @@ export async function POST(req: NextRequest) {
         revealProductId: true
       }
     });
+    console.log('Here we should open the door');
+    console.log(ground_url);
+    console.log(upper_url);
 
     return Response.json({
       nullifier: pcd.claim.nullifierHash

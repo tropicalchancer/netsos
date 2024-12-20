@@ -13,9 +13,9 @@ export function SiteHeader() {
           <Link href="/about" className="text-foreground/60 transition-colors hover:text-foreground">
               About
             </Link>
-            <Link href="/benefits" className="text-foreground/60 transition-colors hover:text-foreground">
+            {/* <Link href="/benefits" className="text-foreground/60 transition-colors hover:text-foreground">
               Benefits
-            </Link>
+            </Link> */}
            
           </nav>
         </div>

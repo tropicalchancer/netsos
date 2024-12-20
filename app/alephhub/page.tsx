@@ -25,7 +25,7 @@ export default function AlephHub() {
                 </h1>
                 <div className="animate-bounce">
                   <p className="font-mono text-xl text-primary md:text-2xl">
-                    ZUZALU VERIFIED
+                    ZUPASS CREDENTIAL VERIFIED
                   </p>
                 </div>
                 <div className="mt-8">
