@@ -81,7 +81,7 @@ export default function GlobeVisualization() {
       .labelText((d: CityData) => `${d.name}: ${d.status || 'Active'}`)
       .pointColor((d: CityData) => d.status === 'UPCOMING' ? '#ffd700' : '#ff3300')
       .pointAltitude(0.1)
-      .pointRadius(2)
+      .pointRadius(1)
       .pointsMerge(true)
       .hexPolygonsData([])
       .hexPolygonResolution(3)
@@ -100,10 +100,10 @@ export default function GlobeVisualization() {
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableZoom = true;
     controls.enablePan = false;
-    controls.minDistance = 200;
+    controls.minDistance = 150;
     controls.maxDistance = 500;
     controls.rotateSpeed = 0.5;
-    controls.autoRotate = true;
+    controls.autoRotate = false;
     controls.autoRotateSpeed = 0.5;
 
     let frameId: number;
