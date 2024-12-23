@@ -1,27 +1,38 @@
 import Link from "next/link"
+import { Plus } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background">
-      <div className="container flex h-16 items-center justify-between px-4 md:px-6 lg:px-8">
-        <div className="flex items-center gap-6">
-          <Link href="/" className="font-bold">
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <nav className="container flex h-14 items-center justify-between px-6 md:px-8">
+        <div className="flex items-center space-x-6">
+          <Link href="/" className="text-xl font-semibold">
             netso villages
           </Link>
-          
-          <nav className="hidden md:flex gap-6">
-          <Link href="/about" className="text-foreground/60 transition-colors hover:text-foreground">
-              about
-            </Link>
-            {/* <Link href="/benefits" className="text-foreground/60 transition-colors hover:text-foreground">
-              Benefits
-            </Link> */}
-           
-          </nav>
+          <Link 
+            href="/about" 
+            className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+          >
+            about
+          </Link>
         </div>
-        <div className="flex items-center gap-2">
-        </div>
-      </div>
+        <Button 
+          variant="outline" 
+          size="sm" 
+          asChild
+          className="flex items-center gap-2"
+        >
+          <Link 
+            href="https://docs.google.com/forms/d/e/1FAIpQLSccz5k5EJSmMsgWi-xPOdW-mD6d07Ugr2k1wfwIRALw3kDT8w/viewform?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Plus className="h-4 w-4" />
+            Add Missing Popup
+          </Link>
+        </Button>
+      </nav>
     </header>
   )
 }
