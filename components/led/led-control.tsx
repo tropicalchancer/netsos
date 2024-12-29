@@ -8,7 +8,7 @@ export default function LEDControl() {
   const toggleLED = async (state: 'on' | 'off') => {
     try {
       await fetch(`${ESP32_IP}/api/led/${state}`);
-    } catch (err) {
+    } catch {
       alert('Failed to connect to ESP32');
     }
   };
