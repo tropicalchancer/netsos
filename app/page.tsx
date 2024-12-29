@@ -4,23 +4,18 @@ import { NavigationLayout } from "@/components/layout/navigation-layout"
 import { CitiesService } from "@/services/cities"
 
 export default function Home() {
- const activeCount = popupCities.filter(city => 
-   CitiesService.getStatus(city.dateRange) === "ON NOW"
- ).length
- const upcomingCount = popupCities.filter(city => 
-   CitiesService.getStatus(city.dateRange) === "UPCOMING"
- ).length
+  const { active, upcoming, total } = CitiesService.getCityCounts(popupCities)
 
- return (
-   <NavigationLayout>
-     <div>
-       <div className="text-center py-4 text-muted-foreground">
-         {activeCount} cities active now · {upcomingCount} upcoming · {popupCities.length} items listed
-       </div>
-       <section className="py-8 md:py-12">
-         <CitiesGrid />
-       </section>
-     </div>
-   </NavigationLayout>
- )
+  return (
+    <NavigationLayout>
+      <div>
+        <div className="text-center py-4 text-muted-foreground">
+          {active} cities active now · {upcoming} upcoming · {total} items listed
+        </div>
+        <section className="py-8 md:py-12">
+          <CitiesGrid />
+        </section>
+      </div>
+    </NavigationLayout>
+  )
 }

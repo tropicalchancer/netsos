@@ -19,27 +19,17 @@ export function CitiesGrid() {
   const filteredCities = CitiesService.filterCities(popupCities, filter, search)
 
   if (!mounted) {
-    return <div className="space-y-8">
-      <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
-        <div className="h-10 bg-muted rounded-md animate-pulse w-[300px]" />
-        <div className="h-9 bg-muted rounded-md animate-pulse w-[200px]" />
-      </div>
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {[1, 2, 3].map((i) => (
-          <div key={i} className="h-[200px] bg-muted rounded-lg animate-pulse" />
-        ))}
-      </div>
-    </div>
+    return <LoadingState />
   }
 
   return (
     <div className="container space-y-8">
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="w-full max-w-2xl">
-          <Tabs defaultValue="all" value={filter} onValueChange={setFilter}>
+          <Tabs value={filter} onValueChange={setFilter}>
             <TabsList>
               <TabsTrigger value="all">All Cities</TabsTrigger>
-              <TabsTrigger value="active">Active Now</TabsTrigger>
+              <TabsTrigger value="on_now">Active Now</TabsTrigger>
               <TabsTrigger value="upcoming">Upcoming</TabsTrigger>
               <TabsTrigger value="finished">Finished</TabsTrigger>
             </TabsList>
@@ -56,6 +46,22 @@ export function CitiesGrid() {
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {filteredCities.map((city) => (
           <CityCard key={`${city.name}-${city.year}`} city={city} />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function LoadingState() {
+  return (
+    <div className="space-y-8">
+      <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+        <div className="h-10 bg-muted rounded-md animate-pulse w-[300px]" />
+        <div className="h-9 bg-muted rounded-md animate-pulse w-[200px]" />
+      </div>
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {[1, 2, 3].map((i) => (
+          <div key={i} className="h-[200px] bg-muted rounded-lg animate-pulse" />
         ))}
       </div>
     </div>
