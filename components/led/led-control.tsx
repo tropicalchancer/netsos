@@ -2,10 +2,12 @@ import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
+const ESP32_IP = process.env.NEXT_PUBLIC_ESP32_IP;
+
 export default function LEDControl() {
   const toggleLED = async (state) => {
     try {
-      await fetch(`http://192.168.1.200/api/led/${state}`);
+      await fetch(`${ESP32_IP}/api/led/${state}`);
     } catch (err) {
       alert('Failed to connect to ESP32');
     }
