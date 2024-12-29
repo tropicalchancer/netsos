@@ -121,7 +121,7 @@ export const popupCities: PopupCity[] = [
     }
   },
   {
-    name: "Aleph 2",
+    name: "Aleph de Verano",
     status: "UPCOMING",
     brand: "🏙️✨ CRECIMIENTO",
     year: 2024,
