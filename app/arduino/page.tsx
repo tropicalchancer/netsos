@@ -6,7 +6,7 @@ export default function ArduinoPage() {
   return (
     <AuthProtection>
       <div className="container mx-auto py-8">
-        <h1 className="text-2xl font-bold mb-4">Arduino Control</h1>
+        <h1 className="text-2xl font-bold mb-4">Light Control</h1>
         <LEDControl />
       </div>
     </AuthProtection>
