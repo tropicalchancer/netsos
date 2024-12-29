@@ -4,9 +4,10 @@ import Image from "next/image"
 import { Building2, Calendar, Globe, MapPin, Twitter } from "lucide-react"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { PopupCity } from "@/types/popup-city"
+import { PopupCity, CityStatus } from "@/types/popup-city"
 import { useUnsplashImage } from "@/lib/hooks"
 import { getUnsplashUrl } from "@/lib/utils"
+import { CitiesService } from "@/services/cities"
 
 interface CityCardProps {
   city: PopupCity
@@ -14,8 +15,9 @@ interface CityCardProps {
 
 export function CityCard({ city }: CityCardProps) {
   const { image } = useUnsplashImage(city.location.city, city.location.country)
+  const status = CitiesService.getStatus(city.dateRange)
 
-  const getStatusColor = (status: string) => {
+  const getStatusColor = (status: CityStatus): string => {
     switch (status) {
       case "ON NOW":
         return "bg-green-500/80 text-white"
@@ -30,7 +32,6 @@ export function CityCard({ city }: CityCardProps) {
 
   return (
     <Card className="relative w-full h-[400px] group overflow-hidden">
-      {/* Image Background */}
       <div className="absolute inset-0">
         {image ? (
           <Image
@@ -43,19 +44,16 @@ export function CityCard({ city }: CityCardProps) {
         ) : (
           <div className="w-full h-full bg-muted" />
         )}
-        {/* Gradient Overlays */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
       </div>
 
-      {/* Content */}
       <div className="relative h-full p-6 flex flex-col text-white">
-        {/* Top Section */}
         <div className="mb-auto">
           <Badge 
             variant="secondary" 
-            className={`mb-4 ${getStatusColor(city.status)}`}
+            className={`mb-4 ${getStatusColor(status)}`}
           >
-            {city.status}
+            {status}
           </Badge>
           
           <div className="flex items-center gap-2 mb-2 opacity-90">
@@ -68,7 +66,6 @@ export function CityCard({ city }: CityCardProps) {
           <p className="text-sm text-white/80 mb-4">{city.oneLiner}</p>
         </div>
 
-        {/* Bottom Section */}
         <div className="space-y-3">
           {city.dateRange && (
             <div className="flex items-center gap-2 text-white/90">
@@ -81,7 +78,6 @@ export function CityCard({ city }: CityCardProps) {
             <span className="text-sm">{city.location.city}, {city.location.country}</span>
           </div>
           
-          {/* Links */}
           <div className="flex gap-3 mt-4">
             {city.websiteUrl && (
               <a 
@@ -108,7 +104,6 @@ export function CityCard({ city }: CityCardProps) {
           </div>
         </div>
 
-        {/* Unsplash Attribution */}
         {image && (
           <div className="absolute bottom-2 right-2 text-[10px] text-white/50">
             Photo by{' '}

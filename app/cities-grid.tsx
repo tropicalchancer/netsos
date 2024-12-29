@@ -5,6 +5,7 @@ import { CityCard } from "@/components/city-card"
 import { Input } from "@/components/ui/input"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { popupCities } from "@/data/popup-cities"
+import { CitiesService } from "@/services/cities"
 
 export function CitiesGrid() {
   const [mounted, setMounted] = useState(false)
@@ -15,20 +16,7 @@ export function CitiesGrid() {
     setMounted(true)
   }, [])
 
-  const filteredCities = popupCities.filter(city => {
-    const matchesFilter = 
-      filter === "all" || 
-      (filter === "active" && city.status === "ON NOW") ||
-      (filter === "upcoming" && city.status === "UPCOMING") ||
-      (filter === "finished" && city.status === "FINISHED")
-
-    const matchesSearch = 
-      city.name.toLowerCase().includes(search.toLowerCase()) ||
-      city.location.city.toLowerCase().includes(search.toLowerCase()) ||
-      city.location.country.toLowerCase().includes(search.toLowerCase())
-
-    return matchesFilter && matchesSearch
-  })
+  const filteredCities = CitiesService.filterCities(popupCities, filter, search)
 
   if (!mounted) {
     return <div className="space-y-8">

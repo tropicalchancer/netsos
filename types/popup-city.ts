@@ -1,6 +1,8 @@
+export type CityStatus = "ON NOW" | "UPCOMING" | "FINISHED"
+
 export interface PopupCity {
     name: string
-    status: "ON NOW" | "UPCOMING" | "FINISHED"
+    status: CityStatus // Changed this line to use the type
     brand: string
     year: number
     dateRange: string
@@ -14,4 +16,4 @@ export interface PopupCity {
       latitude: number
       longitude: number
     }
-  }
+}
