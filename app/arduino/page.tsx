@@ -1,3 +1,4 @@
+//note: this is is connected to components/brunel-showcase.tsx (or was)
 'use client'
 import LEDControl from "@/components/led/led-control"
 import { AuthProtection } from "@/components/auth/auth-protection"
