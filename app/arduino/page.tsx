@@ -1,14 +1,12 @@
 'use client'
 import LEDControl from "@/components/led/led-control"
-import { AuthProtection } from "@/components/auth/auth-protection"
 
+// Removed AuthProtection completely for ESP32 control
 export default function ArduinoPage() {
   return (
-    <AuthProtection>
-      <div className="container mx-auto py-8">
-        <h1 className="text-2xl font-bold mb-4">Light Control</h1>
-        <LEDControl />
-      </div>
-    </AuthProtection>
-  )
+    <div className="container mx-auto py-8">
+      <h1 className="text-2xl font-bold mb-4">Coffee Machine Control</h1>
+      <LEDControl />
+    </div>
+  );
 }
