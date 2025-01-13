@@ -723,7 +723,7 @@ export const popupCities: PopupCity[] = [
     dateRange: "February 5 → March 31, 2025",
     websiteUrl: "https://berlinhouse.com/",
     twitterUrl: "https://x.com/berlinhouse_sf",
-    description: "We are a 16-floor community innovation hub in the heart of San Francisco, dedicated to advancing frontier technologies, arts, and sciences",
+    description: "​The Frontier Tower is a 16-story nexus for frontier technology, fostering innovation and collaboration in the heart of Silicon Valley. Starting with a vertical pop-up village Feb 5 - Mar 31, 2025, this will become a lighthouse for the future, attracting top talent in AI, Neurotech, Longevity, Crypto, DeSci, Biotech, Hard Tech, Arts & music.",
     oneLiner: "A 16-floor community innovation hub in the heart of San Francisco, dedicated to advancing frontier technologies, arts, and sciences",
     location: {
       city: "San Francisco",
@@ -783,7 +783,24 @@ export const popupCities: PopupCity[] = [
       longitude: -99.1332
     }
   },
-  
+  {
+    name: "Bloom City",
+    status: "UPCOMING",
+    brand: "🏙️✨ ",
+    year: 2025,
+    dateRange: "June 22 → August 16, 2025",
+    websiteUrl: "https://www.jellyfishdao.org/bloom-city",
+    twitterUrl: "https://x.com/JellyfishDAO",
+    description: "Bloom City is a pop-up village in LA that is bringing together longevity thought leaders, innovators, scientists, and entertainment creators to form a new society focused on catalyzing a longevity cultural revolution. By using positive entertainment and fostering organic, bottom-up collaboration, we aim to seed a movement that prioritizes extended and enhanced human life.",
+    oneLiner: "Bloom City is a pop-up village in LA that is bringing together longevity thought leaders, innovators, scientists, and entertainment creators to form a new society focused on catalyzing a longevity cultural revolution.",
+    location: {
+      city: "Los Angeles",
+      country: "USA",
+      latitude: 34.0522,
+      longitude: -118.2437
+    }
+  },
+
 
 //template
   /*
