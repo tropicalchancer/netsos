@@ -12,11 +12,23 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'unpkg.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'api.mapbox.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'tiles.mapbox.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'events.mapbox.com',
       }
     ],
   },
   // Transpile three and three-globe modules
-  transpilePackages: ['three', 'three-globe'],
+  transpilePackages: ['three', 'three-globe', 'mapbox-gl'],
 }
 
 export default nextConfig

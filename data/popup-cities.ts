@@ -40,7 +40,7 @@ export const popupCities: PopupCity[] = [
     status: "UPCOMING",
     brand: "🏙️✨ ZUITZERLAND",
     year: 2025,
-    dateRange: "May 1, 2025 → June 30, 2025",
+    dateRange: "May 3, 2025 → June 18, 2025",
     websiteUrl: "https://www.zuitzerland.ch/",
     twitterUrl: "https://x.com/zuitzerland",
     description: "Two month zuzalu event in Interlaken Switzerland, in May and June 2025, partnering with the local community, hosting 200-300 people in our amazing zuvillage.",
