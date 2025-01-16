@@ -800,6 +800,23 @@ export const popupCities: PopupCity[] = [
       longitude: -118.2437
     }
   },
+  {
+    name: "Edge Expedition: South Africa",
+    status: "UPCOMING",
+    brand: "EDGE CITY",
+    year: 2025,
+    dateRange: "April → April 12, 2025",
+    websiteUrl: "https://www.edgecity.live/southafrica",
+    twitterUrl: "https://x.com/JoinEdgeCity/status/1878903479202390400",
+    description: "How can Africa play a role in the future of networked societies and the next frontier? Join 50 global builders, founders, researchers and other interesting people in exploring, learning and building the future together",
+    oneLiner: "How can Africa play a role in the future of networked societies and the next frontier? Join 50 global builders, founders, researchers and other interesting people in exploring, learning and building the future together.",
+    location: {
+      city: "Cape Town",
+      country: "SOUTH AFRICA",
+      latitude: -33.9249,
+      longitude: 18.4241
+    }
+  },
 
 
 //template
