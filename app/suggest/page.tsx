@@ -17,10 +17,10 @@ export default function SuggestPage() {
         </p>
         <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
           You can join the group chat, suggest activities, or just do your own thing. 
-          It&apos;s all about creating opportunities for serendipitous connections while maintaining 
+          It is all about creating opportunities for serendipitous connections while maintaining 
           the freedom to choose how involved you want to be.
         </p>
       </div>
     </div>
   );
-};
+}
