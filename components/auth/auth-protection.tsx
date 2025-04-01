@@ -11,6 +11,50 @@ import { SemaphoreGroupPCDTypeName } from "@pcd/semaphore-group-pcd/SemaphoreGro
 import { SemaphoreIdentityPCDTypeName } from "@pcd/semaphore-identity-pcd/SemaphoreIdentityPCD";
 import { generateSnarkMessageHash } from "@pcd/util";
 
+const LOGIN_GROUPS = [
+  {
+    id: "zuzalu-participant",  // Changed from "1" to a unique string
+    name: "Zuzalu Participant",
+    url: "https://api.zupass.org/semaphore/1"
+  },
+  {
+    id: "zuzalu-resident",     // Changed from "2" to a unique string
+    name: "Zuzalu Resident",
+    url: "https://api.zupass.org/semaphore/2"
+  },
+  {
+    id: "zuzalu-visitor",      // Changed from "3" to a unique string
+    name: "Zuzalu Visitor",
+    url: "https://api.zupass.org/semaphore/3"
+  },
+  {
+    id: "zuzalu-organizer",    // Changed from "4" to a unique string
+    name: "Zuzalu Organizer",
+    url: "https://api.zupass.org/semaphore/4"
+  },
+  {
+    id: "everyone",            // Changed from "5" to a unique string
+    name: "Everyone",
+    url: "https://api.zupass.org/semaphore/5"
+  },
+  {
+    id: "devconnect-attendee", // Changed from "6" to a unique string
+    name: "Devconnect Attendee",
+    url: "https://api.zupass.org/semaphore/6"
+  },
+  {
+    id: "devconnect-organizer", // Changed from "7" to a unique string
+    name: "Devconnect Organizer",
+    url: "https://api.zupass.org/semaphore/7"
+  },
+  {
+    id: "zuvillage-georgia",    // Already unique
+    name: "ZuVillage Georgia",
+    url: "https://api.zupass.org/generic-issuance/api/semaphore/fca0ba48-125b-43a4-90ef-04f9fdede43d/7ce6f74a-1383-57be-a77a-d4fc04e02f45"
+  }
+  // Add other groups as needed
+];
+
 interface AuthProtectionProps {
   children: React.ReactNode;
 }
@@ -18,6 +62,7 @@ interface AuthProtectionProps {
 export function AuthProtection({ children }: AuthProtectionProps) {
   const [isVerifying, setIsVerifying] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [selectedGroupId, setSelectedGroupId] = useState<string>("");
   const [pcdStr] = useZupassPopupMessages();
   const [error, setError] = useState<string | null>(null);
 
@@ -51,17 +96,22 @@ export function AuthProtection({ children }: AuthProtectionProps) {
   }, [pcdStr]);
 
   const handleVerify = () => {
+    if (!selectedGroupId) {
+      setError("Please select a group first");
+      return;
+    }
+
     setIsVerifying(true);
     setError(null);
     
     try {
-      // Using the exact same URL format as Zupoll
       const ZUPASS_CLIENT_URL = "https://zupass.org";
-      const ZUPASS_SERVER_URL = "https://api.zupass.org"; 
       const popupUrl = `${window.location.origin}/popup`;
       
-      // This is the correct format used by Zupoll
-      const ZUZALU_PARTICIPANTS_GROUP_URL = `${ZUPASS_SERVER_URL}/semaphore/1`;
+      const selectedGroup = LOGIN_GROUPS.find(g => g.id === selectedGroupId);
+      if (!selectedGroup) {
+        throw new Error("Invalid group selection");
+      }
       
       const proofUrl = constructZupassPcdGetRequestUrl(
         ZUPASS_CLIENT_URL,
@@ -76,7 +126,7 @@ export function AuthProtection({ children }: AuthProtectionProps) {
           group: {
             argumentType: ArgumentTypeName.Object,
             userProvided: false,
-            remoteUrl: ZUZALU_PARTICIPANTS_GROUP_URL
+            remoteUrl: selectedGroup.url
           },
           identity: {
             argumentType: ArgumentTypeName.PCD,
@@ -116,8 +166,23 @@ export function AuthProtection({ children }: AuthProtectionProps) {
           </CardHeader>
           <CardContent className="space-y-4">
             <p>
-              Please verify with ZuPass to access this content.
+              Please select a group and verify with ZuPass to access this content.
             </p>
+            
+            {/* Simple HTML select element */}
+            <select
+              value={selectedGroupId}
+              onChange={(e) => setSelectedGroupId(e.target.value)}
+              className="w-full p-2 border rounded-md mb-4"
+            >
+              <option value="">Select a verification group</option>
+              {LOGIN_GROUPS.map((group) => (
+                <option key={group.id} value={group.id}>
+                  {group.name}
+                </option>
+              ))}
+            </select>
+
             {error && (
               <div className="p-3 bg-red-100 text-red-700 rounded-md">
                 {error}
@@ -125,7 +190,7 @@ export function AuthProtection({ children }: AuthProtectionProps) {
             )}
             <Button 
               onClick={handleVerify} 
-              disabled={isVerifying}
+              disabled={isVerifying || !selectedGroupId}
               className="w-full"
             >
               {isVerifying ? "Verifying..." : "Verify with ZuPass"}
