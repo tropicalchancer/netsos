@@ -16,9 +16,9 @@ export const popupCities: PopupCity[] = [
       source: "John Doe"
     },
     tagline: "Two month zuzalu event in Interlaken Switzerland",
-    tags: ["crypto", "community", "innovation"],
+    tags: ["d/acc", "governance", "biotech"],
     location: {
-      city: "Interlaken",
+      city: "secret location",
       country: "SWITZERLAND"
     },
 
@@ -29,41 +29,20 @@ export const popupCities: PopupCity[] = [
       latitude: 46.6863,
       longitude: 7.8632
     },
-    costs: {
-      estimatedTotalMonthlyCost: 8000,
-      currency: "USD",
-      tickets: {
-        type: "TIERED",
-        options: [
-          {
-            name: "Full Experience",
-            duration: 45,
-            price: 6000,
-            available: true
-          },
-          {
-            name: "Two Week Pass",
-            duration: 14,
-            price: 3000,
-            available: false
-          }
-        ]
-      },
-      housing: {
-        type: "INCLUDED",
-        details: "Accommodation provided in shared chalets in Interlaken. All utilities and amenities included."
-      },
-      monthlyEstimates: {
-        food: 800,
-        transport: 200,
-        activities: 1000
-      },
-      lastUpdated: "2024-03-19"
+    notes: {
+      description: "Full experience tickets (45 days) are around $6,000, which includes shared chalet accommodation. Additional monthly costs for food, transport, and activities typically range from $2,000-3,000. Accommodation is provided in shared chalets in Interlaken with all utilities and amenities included. The event will host 200 participants.",
+      lastUpdated: "2024-03-19",
+      estimatedRange: {
+        min: 6000,
+        max: 9000,
+        currency: "USD",
+        timeUnit: "total"
+      }
     },
     links: {
       website: "https://www.zuitzerland.ch/",
       twitter: "https://x.com/zuitzerland",
-      discord: "https://discord.gg/zuitzerland",
+      telegram: "https://t.me/zuitzerland",
       application: "https://apply.zuitzerland.ch"
     },
     amenities: [
@@ -73,11 +52,6 @@ export const popupCities: PopupCity[] = [
       "Mountain Views",
       "Community Events"
     ],
-    requirements: [
-      "Application Required",
-      "Proof of Work/Contribution"
-    ],
-    capacity: 300,
 
     // Metadata
     createdAt: "2024-03-19T00:00:00Z",

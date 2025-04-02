@@ -28,33 +28,15 @@ export interface PopupCityDetailedInfo {
     latitude: number;
     longitude: number;
   };
-  costs: {
-    estimatedTotalMonthlyCost: number;
-    currency: string;
-    tickets: {
-      type: 'FLAT' | 'TIERED';
-      options: Array<{
-        name: string;
-        price: number;
-        duration: number;
-        available: boolean;
-      }>;
-    };
-    housing: {
-      type: 'INCLUDED' | 'SELF_BOOK' | 'ASSISTED' | 'HYBRID';
-      details: string;
-      estimatedCost?: {
-        min: number;
-        max: number;
-        timeUnit: 'night' | 'week' | 'month';
-      };
-    };
-    monthlyEstimates?: {
-      food?: number;
-      transport?: number;
-      activities?: number;
-    };
+  notes?: {
+    description: string;
     lastUpdated: string;
+    estimatedRange?: {
+      min: number;
+      max: number;
+      currency: string;
+      timeUnit: 'total' | 'day' | 'week' | 'month';
+    };
   };
   links: {
     website: string;
@@ -65,8 +47,6 @@ export interface PopupCityDetailedInfo {
     application?: string;
   };
   amenities: string[];
-  requirements?: string[];
-  capacity?: number;
 }
 
 // Common Metadata

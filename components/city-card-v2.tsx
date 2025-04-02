@@ -5,6 +5,7 @@ import { Calendar, MapPin } from "lucide-react"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { PopupCityCard } from "@/types/popup-city-v2"
+import { formatDateRange } from "@/lib/date-utils"
 
 interface CityCardProps {
   city: PopupCityCard;
@@ -75,7 +76,7 @@ export function CityCardV2({ city, onClick }: CityCardProps) {
           <div className="flex items-center gap-2 text-white/90">
             <Calendar className="h-4 w-4" />
             <span className="text-sm">
-              {new Date(city.startDate).toLocaleDateString()} → {new Date(city.endDate).toLocaleDateString()}
+              {formatDateRange(city.startDate, city.endDate)}
             </span>
           </div>
           <div className="flex items-center gap-2 text-white/90">
