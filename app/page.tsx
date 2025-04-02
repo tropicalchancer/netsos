@@ -1,4 +1,4 @@
-import { CitiesGrid } from "./cities-grid"
+import { CitiesGrid } from "@/components/cities-grid"
 import { popupCities } from "@/data/popup-cities"
 import { NavigationLayout } from "@/components/layout/navigation-layout"
 import { CitiesService } from "@/services/cities"
@@ -8,13 +8,11 @@ export default function Home() {
 
   return (
     <NavigationLayout>
-      <div>
+      <div className="container">
         <div className="text-center py-4 text-muted-foreground">
           {active} cities active now · {upcoming} upcoming · {total} items listed
         </div>
-        <section className="py-8 md:py-12">
-          <CitiesGrid />
-        </section>
+        <CitiesGrid cities={popupCities} />
       </div>
     </NavigationLayout>
   )
