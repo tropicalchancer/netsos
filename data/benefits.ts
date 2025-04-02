@@ -2,17 +2,26 @@ import type { Benefit } from "@/types"
 
 export const benefits: Benefit[] = [
   {
-    id: "brex-1",
-    name: "Brex",
-    partnerName: "Brex",
-    shortDescription: "A point value worth up to $750 towards Brex travel or $450 towards cash back",
-    longDescription: "A point value worth up to $750 towards Brex travel or $450 towards cash back. OnDeck companies get: a 50,000-point sign-up bonus after depositing $500,000 into a Brex business account and an additional 25,000-point sign-up bonus after spending $10,000 on Brex card(s).",
-    description: "Brex is rebuilding B2B financial products, starting with a corporate card for technology companies.",
-    category: "FINANCIAL",
-    partnerLogo: "/logos/brex.png",
-    actionUrl: "https://brex.com/signup",
-    redemptionDetails: "Follow details to redeem"
+    id: "airalo-1",
+    name: "Airalo",
+    partnerName: "Airalo",
+    shortDescription: "Get 15% off on all Airalo eSIMs with code SAFETY15",
+    longDescription: "Airalo is the world's first eSIM store, offering instant connectivity in over 190+ countries and regions. Get 15% off on all eSIMs using code SAFETY15. Perfect for travelers looking for seamless, instant mobile data without the hassle of physical SIM cards.",
+    category: "TRAVEL",
+    partnerLogo: "/logos/airalo.png",
+    actionUrl: "https://www.airalo.com",
+    redemptionDetails: "Use code SAFETY15 at checkout to receive 15% off"
   },
-  // Add more benefits as needed
+  {
+    id: "zanzalu-1",
+    name: "Zanzalu",
+    partnerName: "Zanzalu",
+    shortDescription: "Get 15% off on Zanzalu popup village tickets with code ZUZALU15",
+    longDescription: "Zanzalu is catalyzing an innovation ecosystem in East Africa by building a global talent hub in Zanzibar. Join us from July 4-August 4, 2024 in Zanzibar, Tanzania for an immersive experience in one of Africa's most vibrant locations. Use code ZUZALU15 for 15% off your ticket.",
+    category: "POPUP_CITY",
+    partnerLogo: "/logos/zanzalu.png",
+    actionUrl: "https://zanzalu.org",
+    redemptionDetails: "Use code ZUZALU15 at checkout to receive 15% off your Zanzalu ticket"
+  }
 ]
 

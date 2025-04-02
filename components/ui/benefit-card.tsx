@@ -4,8 +4,8 @@ import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import Image from "next/image";
 import { Star } from "lucide-react";
+import type { Benefit } from "@/types";
 
 interface BenefitCardProps {
   benefit: Benefit;
@@ -35,8 +35,6 @@ export function BenefitCard({ benefit }: BenefitCardProps) {
             <p className="text-sm text-gray-700">{benefit.shortDescription}</p>
           </div>
 
-          <p className="text-sm text-gray-600">{benefit.description}</p>
-
           {/* Footer */}
           <div className="pt-4">
             <Button
@@ -60,18 +58,12 @@ export function BenefitCard({ benefit }: BenefitCardProps) {
               <span className="text-purple-500 text-xl">⚡</span>
               <DialogTitle className="text-2xl font-semibold">{benefit.name}</DialogTitle>
             </div>
-            <div className="flex items-center gap-2 text-sm text-gray-600">
-              <span className="text-purple-500">⚡</span>
-              <span>ODF partners</span>
-            </div>
           </DialogHeader>
 
           <div className="space-y-8 mt-6">
             <div className="border border-dashed border-blue-200 rounded-lg p-6 bg-blue-50/50">
               <p className="text-base leading-relaxed text-gray-700">{benefit.longDescription}</p>
             </div>
-
-            <p className="text-base leading-relaxed text-gray-600">{benefit.description}</p>
 
             <div className="flex gap-4 pt-4">
               <Button 
