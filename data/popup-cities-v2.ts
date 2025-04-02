@@ -9,7 +9,7 @@ export const popupCities: PopupCity[] = [
     status: "UPCOMING",
     startDate: "2025-05-03",
     endDate: "2025-06-18",
-    brand: "🏙️✨ ZUITZERLAND",
+    brand: "ZUITZERLAND",
     coverImage: {
       url: "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99",
       attribution: "Unsplash",

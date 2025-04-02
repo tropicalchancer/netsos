@@ -1,7 +1,7 @@
 'use client'
 
 import Image from "next/image"
-import { Building2, Calendar, MapPin } from "lucide-react"
+import { Calendar, MapPin } from "lucide-react"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { PopupCityCard } from "@/types/popup-city-v2"
@@ -43,16 +43,19 @@ export function CityCardV2({ city, onClick }: CityCardProps) {
 
       <div className="relative h-full p-6 flex flex-col text-white">
         <div className="mb-auto">
-          <Badge 
-            variant="secondary" 
-            className={`mb-4 ${getStatusColor(city.status)}`}
-          >
-            {city.status.replace('_', ' ')}
-          </Badge>
-          
-          <div className="flex items-center gap-2 mb-2 opacity-90">
-            <Building2 className="h-5 w-5" />
-            <span className="text-lg">{city.brand}</span>
+          <div className="flex flex-wrap gap-2 mb-4">
+            <Badge 
+              variant="secondary" 
+              className={getStatusColor(city.status)}
+            >
+              {city.status.replace('_', ' ')}
+            </Badge>
+            <Badge 
+              variant="outline" 
+              className="bg-white/10 text-white border-white/20"
+            >
+              {city.brand.replace('🏙️✨ ', '')}
+            </Badge>
           </div>
           
           <h3 className="text-3xl font-bold mb-2">{city.name}</h3>
