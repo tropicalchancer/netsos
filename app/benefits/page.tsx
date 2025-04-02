@@ -1,7 +1,8 @@
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { AuthProtection } from "@/components/auth/auth-protection";
+import { BenefitCard } from "@/components/ui/benefit-card";
+import { benefits } from "@/data/benefits";
 
 export default function BenefitsPage() {
   return (
@@ -13,25 +14,14 @@ export default function BenefitsPage() {
           <p className="text-xl text-muted-foreground">
             Exclusive perks and benefits for popup city residents
           </p>
-          <p className="text-muted-foreground">1 benefits available</p>
+          <p className="text-muted-foreground">{benefits.length} benefits available</p>
         </div>
 
-        {/* Benefits List */}
-        <div className="grid gap-6">
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0">
-              <CardTitle>Coworking Access</CardTitle>
-              <span className="bg-secondary text-secondary-foreground px-4 py-2 rounded-md font-medium">
-                WORKSPACE
-              </span>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <p className="text-muted-foreground text-lg">
-                24/7 access to premium coworking spaces
-              </p>
-              <p>Available in: All Cities</p>
-            </CardContent>
-          </Card>
+        {/* Benefits Grid */}
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {benefits.map((benefit) => (
+            <BenefitCard key={benefit.id} benefit={benefit} />
+          ))}
         </div>
       </div>
     </AuthProtection>

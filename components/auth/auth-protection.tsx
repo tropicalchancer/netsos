@@ -13,42 +13,42 @@ import { generateSnarkMessageHash } from "@pcd/util";
 
 const LOGIN_GROUPS = [
   {
-    id: "zuzalu-participant",  // Changed from "1" to a unique string
+    id: "zuzalu-participant",  
     name: "Zuzalu Participant",
     url: "https://api.zupass.org/semaphore/1"
   },
   {
-    id: "zuzalu-resident",     // Changed from "2" to a unique string
+    id: "zuzalu-resident",     
     name: "Zuzalu Resident",
     url: "https://api.zupass.org/semaphore/2"
   },
   {
-    id: "zuzalu-visitor",      // Changed from "3" to a unique string
+    id: "zuzalu-visitor",      
     name: "Zuzalu Visitor",
     url: "https://api.zupass.org/semaphore/3"
   },
   {
-    id: "zuzalu-organizer",    // Changed from "4" to a unique string
+    id: "zuzalu-organizer",  
     name: "Zuzalu Organizer",
     url: "https://api.zupass.org/semaphore/4"
   },
   {
-    id: "everyone",            // Changed from "5" to a unique string
+    id: "everyone",            
     name: "Everyone",
     url: "https://api.zupass.org/semaphore/5"
   },
   {
-    id: "devconnect-attendee", // Changed from "6" to a unique string
+    id: "devconnect-attendee", 
     name: "Devconnect Attendee",
     url: "https://api.zupass.org/semaphore/6"
   },
   {
-    id: "devconnect-organizer", // Changed from "7" to a unique string
+    id: "devconnect-organizer", 
     name: "Devconnect Organizer",
     url: "https://api.zupass.org/semaphore/7"
   },
   {
-    id: "zuvillage-georgia",    // Already unique
+    id: "zuvillage-georgia",    
     name: "ZuVillage Georgia",
     url: "https://api.zupass.org/generic-issuance/api/semaphore/fca0ba48-125b-43a4-90ef-04f9fdede43d/7ce6f74a-1383-57be-a77a-d4fc04e02f45"
   }
@@ -173,11 +173,15 @@ export function AuthProtection({ children }: AuthProtectionProps) {
             <select
               value={selectedGroupId}
               onChange={(e) => setSelectedGroupId(e.target.value)}
-              className="w-full p-2 border rounded-md mb-4"
+              className="w-full p-2 rounded-md mb-4 bg-background text-foreground border border-input hover:border-ring focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 transition-colors"
             >
-              <option value="">Select a verification group</option>
+              <option value="" disabled>Select a verification group</option>
               {LOGIN_GROUPS.map((group) => (
-                <option key={group.id} value={group.id}>
+                <option 
+                  key={group.id} 
+                  value={group.id}
+                  className="bg-background text-foreground"
+                >
                   {group.name}
                 </option>
               ))}
