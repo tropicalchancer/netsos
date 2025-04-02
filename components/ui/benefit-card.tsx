@@ -20,22 +20,9 @@ export function BenefitCard({ benefit }: BenefitCardProps) {
             onClick={() => setIsModalOpen(true)}>
         <div className="p-6 space-y-4">
           {/* Header */}
-          <div className="flex justify-between items-start">
-            <div className="flex items-center gap-2">
-              <span className="text-purple-500">⚡</span>
-              <h3 className="font-semibold text-lg">{benefit.name}</h3>
-            </div>
-            {benefit.partnerLogo && (
-              <div className="w-12 h-12 rounded-full bg-gray-50 p-2 flex items-center justify-center">
-                <Image
-                  src={benefit.partnerLogo}
-                  alt={benefit.partnerName}
-                  width={32}
-                  height={32}
-                  className="object-contain"
-                />
-              </div>
-            )}
+          <div className="flex items-center gap-2">
+            <span className="text-purple-500">⚡</span>
+            <h3 className="font-semibold text-lg">{benefit.name}</h3>
           </div>
           
           {/* Star Button */}
@@ -67,30 +54,38 @@ export function BenefitCard({ benefit }: BenefitCardProps) {
 
       {/* Detail Modal */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
-              <span className="text-purple-500">⚡</span>
-              <span>{benefit.name}</span>
-            </DialogTitle>
+        <DialogContent className="sm:max-w-[600px] p-6">
+          <DialogHeader className="space-y-4">
+            <div className="flex items-center gap-2">
+              <span className="text-purple-500 text-xl">⚡</span>
+              <DialogTitle className="text-2xl font-semibold">{benefit.name}</DialogTitle>
+            </div>
             <div className="flex items-center gap-2 text-sm text-gray-600">
               <span className="text-purple-500">⚡</span>
               <span>ODF partners</span>
             </div>
           </DialogHeader>
 
-          <div className="space-y-6">
-            <div className="border border-dashed border-blue-200 rounded-lg p-4 bg-blue-50/50">
-              <p className="text-sm text-gray-700">{benefit.longDescription}</p>
+          <div className="space-y-8 mt-6">
+            <div className="border border-dashed border-blue-200 rounded-lg p-6 bg-blue-50/50">
+              <p className="text-base leading-relaxed text-gray-700">{benefit.longDescription}</p>
             </div>
 
-            <p className="text-sm text-gray-600">{benefit.description}</p>
+            <p className="text-base leading-relaxed text-gray-600">{benefit.description}</p>
 
-            <div className="flex gap-4">
-              <Button className="flex-1" onClick={() => window.open(benefit.actionUrl, '_blank')}>
+            <div className="flex gap-4 pt-4">
+              <Button 
+                size="lg"
+                className="flex-1 text-base py-6" 
+                onClick={() => window.open(benefit.actionUrl, '_blank')}
+              >
                 Get perk
               </Button>
-              <Button variant="secondary" className="flex-1">
+              <Button 
+                variant="secondary" 
+                size="lg"
+                className="flex-1 text-base py-6"
+              >
                 Get help
               </Button>
             </div>
