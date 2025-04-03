@@ -7,7 +7,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <nav className="container flex h-16 items-center justify-between px-6 md:px-8">
         <div className="flex items-center gap-8">
-          <Link href="/" className="text-base font-semibold">
+          <Link href="/" className="text-base font-medium">
             netso villages
           </Link>
           <Link 

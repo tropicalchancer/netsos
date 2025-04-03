@@ -6,7 +6,7 @@ export const popupCities: PopupCity[] = [
     status: "UPCOMING",
     brand: "🏙️✨ EDGE CITY",
     year: 2025,
-    dateRange: "May 24, 2025 → June 21, 2025",
+    dateRange: "January 24, 2025 → February 21, 2025",
     websiteUrl: "https://blog.edgeesmeralda.com/p/save-the-date-for-edge-esmeralda",
     twitterUrl: "https://x.com/JoinEdgeCity",
     description: "It will be a place for people who believe the future can be better & are actively working to make it happen.",
