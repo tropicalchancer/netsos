@@ -12,8 +12,11 @@ export const popupCities: PopupCity[] = [
     brand: "ZUITZERLAND",
     coverImage: {
       url: "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99",
-      attribution: "Unsplash",
-      source: "John Doe"
+      photographer: {
+        name: "John Doe",
+        username: "johndoe"
+      },
+      source: "Unsplash"
     },
     tagline: "Two month zuzalu event in Interlaken Switzerland",
     tags: ["d/acc", "governance", "biotech"],

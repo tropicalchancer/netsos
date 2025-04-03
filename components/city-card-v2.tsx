@@ -84,29 +84,6 @@ export function CityCardV2({ city, onClick }: CityCardProps) {
             <span className="text-sm">{city.location.city}, {city.location.country}</span>
           </div>
         </div>
-
-        <div className="absolute bottom-2 right-2 text-[10px] text-white/50">
-          Photo by{' '}
-          <a 
-            href={`https://unsplash.com/@${city.coverImage.attribution}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-white/70"
-            onClick={e => e.stopPropagation()}
-          >
-            {city.coverImage.attribution}
-          </a>
-          {' / '}
-          <a 
-            href="https://unsplash.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-white/70"
-            onClick={e => e.stopPropagation()}
-          >
-            {city.coverImage.source}
-          </a>
-        </div>
       </div>
     </Card>
   )

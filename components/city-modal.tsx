@@ -144,6 +144,28 @@ export function CityModal({ city, isOpen, onClose }: CityModalProps) {
               </div>
             </div>
           )}
+
+          {/* Photo Credit */}
+          <div className="text-sm text-gray-500">
+            Cover Photo by{' '}
+            <a
+              href={`https://unsplash.com/@${city.coverImage.photographer.username}?utm_source=netsos&utm_medium=referral`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:text-blue-800"
+            >
+              {city.coverImage.photographer.name}
+            </a>{' '}
+            on{' '}
+            <a
+              href="https://unsplash.com/?utm_source=netsos&utm_medium=referral"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:text-blue-800"
+            >
+              Unsplash
+            </a>
+          </div>
         </div>
       </DialogContent>
     </Dialog>

@@ -9,8 +9,11 @@ export interface PopupCityCardInfo {
   brand: string;
   coverImage: {
     url: string;
-    attribution: string;
-    source: string;
+    photographer: {
+      name: string;
+      username: string;
+    };
+    source: 'Unsplash';
   };
   tagline: string;
   tags: string[];
