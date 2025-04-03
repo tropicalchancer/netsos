@@ -31,10 +31,14 @@ export interface Location {
   export interface Benefit {
     id: string
     name: string
-    description: string
-    category: "HOUSING" | "WORKSPACE" | "COMMUNITY" | "OTHER"
-    availability: "ALL_CITIES" | "SELECTED_CITIES"
-    cities?: string[]
+    shortDescription: string
+    longDescription: string
+    category: string
+    icon?: string
+    partnerLogo?: string
+    partnerName: string
+    actionUrl?: string
+    redemptionDetails: string
   }
   
   export interface Venue {

@@ -2,7 +2,7 @@ export type CityStatus = "ON NOW" | "UPCOMING" | "FINISHED"
 
 export interface PopupCity {
     name: string
-    status: CityStatus // Changed this line to use the type
+    status: CityStatus
     brand: string
     year: number
     dateRange: string
