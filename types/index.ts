@@ -21,10 +21,20 @@ export interface Location {
   export interface Experiment {
     id: string
     name: string
+    tldr: string
     description: string
+    location: string
+    rates?: {
+      name: string
+      value: string
+    }[]
+    retroArticle?: {
+      title: string
+      url: string
+    }
     status: "ACTIVE" | "COMPLETED" | "PLANNED"
+    tags: string[]
     startDate: string
-    endDate?: string
     outcomes?: string[]
   }
   
