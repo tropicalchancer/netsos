@@ -2665,5 +2665,68 @@ export const popupCities: PopupCity[] = [
   }
 
 
-
 ]; 
+
+/*
+
+  {
+    // Card Info
+    id: "", // lowercase, hyphenated, usually includes year e.g. "zuzalu-montenegro-2023"
+    name: "", // display name e.g. "Zuzalu Montenegro"
+    slug: "", // usually same as id
+    status: getStatus("YYYY-MM-DD", "YYYY-MM-DD"), // start and end dates
+    startDate: "YYYY-MM-DD", // e.g. "2024-06-01"
+    endDate: "YYYY-MM-DD", // e.g. "2024-06-30"
+    brand: "", // uppercase e.g. "ZUZALU" or "TBD" if unknown
+    coverImage: {
+      url: "", // verified Unsplash URL
+      photographer: {
+        name: "", // photographer's full name
+        username: "" // their Unsplash username
+      },
+      source: "Unsplash"
+    },
+    tagline: "", // short description, one line
+    tags: [], // array of lowercase strings e.g. ["community", "innovation", "technology"]
+    location: {
+      city: "", // city name
+      country: "" // country name in UPPERCASE
+    },
+
+    // Detailed Info
+    description: "", // longer description
+    timezone: "", // e.g. "Europe/Berlin", "Asia/Bangkok"
+    coordinates: {
+      latitude: 0, // decimal number e.g. 18.7883
+      longitude: 0 // decimal number e.g. 98.9853
+    },
+    notes: {
+      description: "", // detailed notes about the event
+      lastUpdated: "2024-03-19", // today's date
+      estimatedRange: { // optional - remove if no pricing info
+        min: 0,
+        max: 0,
+        currency: "USD",
+        timeUnit: "total"
+      }
+    },
+    links: {
+      website: "", // full URL or "TBD"
+      twitter: "", // X/Twitter URL or "TBD"
+      application: "" // application URL, often same as website
+    },
+    amenities: [
+      // array of strings, common ones include:
+      "Coworking Space",
+      "Community Events",
+      "Innovation Hub",
+      "Tech Workshops",
+      "Networking Opportunities"
+    ],
+
+    // Metadata
+    createdAt: "2024-03-19T00:00:00Z", // today's date
+    updatedAt: "2024-03-19T00:00:00Z", // today's date
+    isPublished: true
+  }
+*/
