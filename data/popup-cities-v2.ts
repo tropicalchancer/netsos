@@ -21,14 +21,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2023-03-25",
     endDate: "2023-05-25",
     brand: "ZUZALU",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1555990793-da11153b2473",
-      photographer: {
-        name: "Anita Jankovic",
-        username: "anitajankovic"
-      },
-      source: "Unsplash"
-    },
     tagline: "The original Zuzalu event",
     tags: ["community", "innovation", "technology", "network-states"],
     location: {
@@ -75,14 +67,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2023-08-05",
     endDate: "2023-08-31",
     brand: "SHANHAIWOO",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1538428494232-9c0d8a3ab403",
-      photographer: {
-        name: "Zhang Kaiyv",
-        username: "zhangkaiyv"
-      },
-      source: "Unsplash"
-    },
     tagline: "Shanhaiwu: A month-long Web3 and AI-focused co-living event at Beida Lake Ski Resort",
     tags: ["web3", "ai", "creator-economy", "sustainability", "community"],
     location: {
@@ -130,14 +114,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2024-09-30",
     endDate: "2024-11-10",
     brand: "SHANHAIWOO",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1598971861713-54ad16a7e72e",
-      photographer: {
-        name: "Mathew Schwartz",
-        username: "cadop"
-      },
-      source: "Unsplash"
-    },
     tagline: "A six-week pop-up village for co-learning and co-creating, Sept 30–Nov 10, 2024",
     tags: ["co-learning", "co-creation", "community", "innovation", "thailand"],
     location: {
@@ -185,14 +161,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2024-09-30",
     endDate: "2024-11-10",
     brand: "TBD",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1510915361894-db8b60106cb1",
-      photographer: {
-        name: "Markus Spiske",
-        username: "markusspiske"
-      },
-      source: "Unsplash"
-    },
     tagline: "Ethereum & ZKP dev city #0",
     tags: ["ethereum", "zkp", "blockchain", "development", "technology"],
     location: {
@@ -240,14 +208,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2023-09-15",
     endDate: "2023-10-31",
     brand: "THE MU",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1598971861713-54ad16a7e72e",
-      photographer: {
-        name: "Mathew Schwartz",
-        username: "cadop"
-      },
-      source: "Unsplash"
-    },
     tagline: "Co-learn and co-build with blockchain and cryptography's brightest in 6 weeks",
     tags: ["blockchain", "cryptography", "learning", "community", "technology"],
     location: {
@@ -295,14 +255,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2023-10-29",
     endDate: "2023-11-11",
     brand: "ZUZALU",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200",
-      photographer: {
-        name: "Fatih Yürür",
-        username: "fatihyurur"
-      },
-      source: "Unsplash"
-    },
     tagline: "ZK, public goods, network states, longevity, and the future of Zuzalu scouting",
     tags: ["zk", "public-goods", "network-states", "longevity", "zuzalu"],
     location: {
@@ -349,14 +301,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2023-12-05",
     endDate: "2024-01-05",
     brand: "TBD",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1598971861713-54ad16a7e72e",
-      photographer: {
-        name: "Mathew Schwartz",
-        username: "cadop"
-      },
-      source: "Unsplash"
-    },
     tagline: "WAMO: Merging Web3, AI, digital art, and social action for cultural evolution",
     tags: ["web3", "ai", "digital-art", "social-action", "culture"],
     location: {
@@ -404,14 +348,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2024-01-06",
     endDate: "2024-02-29",
     brand: "VITALIA",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1584466977773-e625c37cdd50",
-      photographer: {
-        name: "Ivana Cajina",
-        username: "von_co"
-      },
-      source: "Unsplash"
-    },
     tagline: "A decentralized city boosting longevity biotech, starting in Roatán, @Prosperahn ZEDE",
     tags: ["longevity", "biotech", "decentralization", "research", "innovation"],
     location: {
@@ -459,14 +395,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2024-03-15",
     endDate: "2024-04-28",
     brand: "THE MU",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1612294037637-ec328d0e075e",
-      photographer: {
-        name: "Renzo D'Andrea",
-        username: "renzodandrea"
-      },
-      source: "Unsplash"
-    },
     tagline: "A dev-focused 6-week pop-up city in Buenos Aires, Argentina",
     tags: ["developers", "technology", "innovation", "community", "argentina"],
     location: {
@@ -514,14 +442,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2024-06-08",
     endDate: "2024-06-22",
     brand: "ZUBERLIN",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1560969184-10fe8719e047",
-      photographer: {
-        name: "Sebastian Herrmann",
-        username: "herrherrmann"
-      },
-      source: "Unsplash"
-    },
     tagline: "A two-week Berlin residency, June 8–22, connecting tech innovators",
     tags: ["technology", "innovation", "community", "berlin", "residency"],
     location: {
@@ -569,14 +489,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2024-06-09",
     endDate: "2024-06-22",
     brand: "THE MU",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1567945716310-4745a6b7844b",
-      photographer: {
-        name: "Kojo Kwarteng",
-        username: "kojokwarteng"
-      },
-      source: "Unsplash"
-    },
     tagline: "Connecting minds to solve real-world problems—Accra, Ghana edition",
     tags: ["innovation", "africa", "technology", "problem-solving", "community"],
     location: {
@@ -624,14 +536,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2024-05-15",
     endDate: "2024-06-21",
     brand: "TBD",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1518709766631-a6a7f45921c3",
-      photographer: {
-        name: "sutirta budiman",
-        username: "sutirtab"
-      },
-      source: "Unsplash"
-    },
     tagline: "A community of innovators driving human flourishing through tech and social innovation",
     tags: ["innovation", "technology", "community", "social-impact", "entrepreneurship"],
     location: {
@@ -679,14 +583,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2024-06-02",
     endDate: "2024-06-30",
     brand: "EDGE CITY",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1465447142348-e9952c393450",
-      photographer: {
-        name: "Jeremy Bishop",
-        username: "jeremybishop"
-      },
-      source: "Unsplash"
-    },
     tagline: "A first step toward Esmeralda, a long-term vision for a new town",
     tags: ["innovation", "community", "technology", "future-building", "sustainability"],
     location: {
@@ -734,14 +630,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2024-07-20",
     endDate: "2024-08-31",
     brand: "ZUVILLAGE",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1563284223-333497472e88",
-      photographer: {
-        name: "Dimitri Tyan",
-        username: "dimitrityan"
-      },
-      source: "Unsplash"
-    },
     tagline: "A digital community for truth seekers, builders, and sovereign individuals with cypherpunk ideals",
     tags: ["cypherpunk", "dacc", "community", "sovereignty", "technology"],
     location: {
@@ -789,14 +677,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2024-08-01",
     endDate: "2024-08-31",
     brand: "MTNDAO",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1682687220742-aba13b6e50ba",
-      photographer: {
-        name: "Mick Haupt",
-        username: "rocinante_11"
-      },
-      source: "Unsplash"
-    },
     tagline: "V6 mtndao Summit: A month-long developer-focused event in Salt Lake City, Aug 2024",
     tags: ["developers", "collaboration", "technology", "community", "innovation"],
     location: {
@@ -844,14 +724,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2024-08-05",
     endDate: "2024-09-01",
     brand: "CRECIMIENTO",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1612294037637-ec328d0e075e",
-      photographer: {
-        name: "Renzo D'Andrea",
-        username: "renzodandrea"
-      },
-      source: "Unsplash"
-    },
     tagline: "Aleph: Bright minds in Buenos Aires pioneering the first crypto nation this August",
     tags: ["crypto", "innovation", "blockchain", "community", "nation-building"],
     location: {
@@ -898,14 +770,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2024-08-10",
     endDate: "2024-09-15",
     brand: "FORMA",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1589909202802-8f4aadce1849",
-      photographer: {
-        name: "Marcelo Vaz",
-        username: "marcelovaz"
-      },
-      source: "Unsplash"
-    },
     tagline: "A think tank partnering with techno-optimistic countries to create Solana Economic Zones",
     tags: ["solana", "blockchain", "economics", "innovation", "governance"],
     location: {
@@ -953,14 +817,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2024-11-10",
     endDate: "2024-11-30",
     brand: "ZUBERLIN",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b",
-      photographer: {
-        name: "Evan Krause",
-        username: "evankrause"
-      },
-      source: "Unsplash"
-    },
     tagline: "A 3-week immersive Zuzalu-style pop-up in Thailand by ZuBerlin creators",
     tags: ["community", "innovation", "thailand", "popup-village"],
     location: {
@@ -1008,14 +864,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2024-08-25",
     endDate: "2024-09-15",
     brand: "ZUITZERLAND",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1527668752968-14dc70a27c95",
-      photographer: {
-        name: "Ricardo Gomez Angel",
-        username: "ripato"
-      },
-      source: "Unsplash"
-    },
     tagline: "A 10-day co-design residence blending Swiss democracy with innovative governance",
     tags: ["governance", "innovation", "democracy", "decentralization", "community"],
     location: {
@@ -1063,14 +911,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2024-09-10",
     endDate: "2024-10-10",
     brand: "ARC",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1513735492246-483525079686",
-      photographer: {
-        name: "Eugene Zhyvchik",
-        username: "eugenezhyvchik"
-      },
-      source: "Unsplash"
-    },
     tagline: "Ârc: Cities enabling great things by great people",
     tags: ["innovation", "urban-development", "community", "technology"],
     location: {
@@ -1117,14 +957,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2024-11-18",
     endDate: "2024-12-18",
     brand: "TBD",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1528181304800-259b08848526",
-      photographer: {
-        name: "Mathew Schwartz",
-        username: "cadop"
-      },
-      source: "Unsplash"
-    },
     tagline: "A month-long pop-up city for 300+ technical, curious builders in Pattaya",
     tags: ["tech", "innovation", "community", "builders"],
     location: {
@@ -1172,14 +1004,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2024-12-09",
     endDate: "2024-12-20",
     brand: "CRECIMIENTO",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1612294037637-ec328d0e075e",
-      photographer: {
-        name: "Renzo D'Andrea",
-        username: "renzodandrea"
-      },
-      source: "Unsplash"
-    },
     tagline: "Aleph: Innovators converge in Buenos Aires to build the first crypto nation",
     tags: ["crypto", "innovation", "startups", "blockchain", "community"],
     location: {
@@ -1226,14 +1050,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2024-10-10",
     endDate: "2024-11-10",
     brand: "EDGE CITY",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1598971861713-54ad16a7e72e",
-      photographer: {
-        name: "Mathew Schwartz",
-        username: "cadop"
-      },
-      source: "Unsplash"
-    },
     tagline: "Join us in Chiang Mai for a month-long experiment in healthy community living and novel tech incubation",
     tags: ["community", "technology", "innovation", "health", "thailand"],
     location: {
@@ -1281,14 +1097,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2024-10-10",
     endDate: "2024-11-10",
     brand: "1-OFF",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a",
-      photographer: {
-        name: "Mathew Schwartz",
-        username: "cadop"
-      },
-      source: "Unsplash"
-    },
     tagline: "Building a global network of communities at the intersection of free tech, health, and innovation",
     tags: ["technology", "health", "innovation", "community", "science"],
     location: {
@@ -1335,14 +1143,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2025-01-24",
     endDate: "2025-02-21",
     brand: "EDGE CITY",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
-      photographer: {
-        name: "Bailey Zindel",
-        username: "baileyzindel"
-      },
-      source: "Unsplash"
-    },
     tagline: "A community for those who believe in a brighter future and are actively creating it",
     tags: ["innovation", "community", "technology"],
     location: {
@@ -1395,14 +1195,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2025-01-01",
     endDate: "2025-02-28",
     brand: "VITALIA",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1559825481-12a05cc00344",
-      photographer: {
-        name: "Alex Azabache",
-        username: "alexazabache"
-      },
-      source: "Unsplash"
-    },
     tagline: "A decentralized city accelerating longevity biotech, starting with a hub in Roatán, @Prosperahn ZEDE",
     tags: ["longevity", "biotech", "innovation", "decentralization", "research"],
     location: {
@@ -1450,14 +1242,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2025-01-05",
     endDate: "2025-02-16",
     brand: "TBD",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944",
-      photographer: {
-        name: "Naveed Ahmed",
-        username: "naveedahmed"
-      },
-      source: "Unsplash"
-    },
     tagline: "An Indian pop-village experiment to catalyze innovation",
     tags: ["innovation", "india", "technology", "community"],
     location: {
@@ -1504,14 +1288,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2025-03-01",
     endDate: "2025-03-31",
     brand: "CRECIMIENTO",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1589909202802-8f4aadce1849",
-      photographer: {
-        name: "Marcelo Vaz",
-        username: "marcelovaz"
-      },
-      source: "Unsplash"
-    },
     tagline: "The world's brightest minds gather in Buenos Aires this August to ignite the future of crypto and startup innovation",
     tags: ["crypto", "innovation", "startups", "blockchain", "community"],
     location: {
@@ -1563,14 +1339,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2025-05-01",
     endDate: "2025-05-01",
     brand: "TBD",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1489392191049-fc10c97e64b6",
-      photographer: {
-        name: "Adrian Infernus",
-        username: "infernus"
-      },
-      source: "Unsplash"
-    },
     tagline: "Empowering African blockchain builders to innovate, collaborate, and create real-world projects",
     tags: ["blockchain", "africa", "innovation", "community", "tech"],
     location: {
@@ -1616,14 +1384,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2025-05-03",
     endDate: "2025-06-18",
     brand: "ZUITZERLAND",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1502943693086-33b5b1cfdf2f",
-      photographer: {
-        name: "Joshua Earle",
-        username: "joshuaearle"
-      },
-      source: "Unsplash"
-    },
     tagline: "Two month zuzalu event in Interlaken Switzerland",
     tags: ["d/acc", "governance", "biotech"],
     location: {
@@ -1676,14 +1436,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2025-03-01",
     endDate: "2025-03-01",
     brand: "ARC",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1531901599143-df5010ab9438",
-      photographer: {
-        name: "Mitchell Kmetz",
-        username: "mktz"
-      },
-      source: "Unsplash"
-    },
     tagline: "Cities designed for greatness to thrive",
     tags: ["innovation", "community", "technology", "urban-development"],
     location: {
@@ -1735,14 +1487,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2024-10-12",
     endDate: "2024-11-10",
     brand: "TBD",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1598971861713-54ad16a7e72e",
-      photographer: {
-        name: "Mathew Schwartz",
-        username: "cadop"
-      },
-      source: "Unsplash"
-    },
     tagline: "AuraVerse: A month in Chiang Mai fusing science, art, and community to push innovation's limits",
     tags: ["science", "art", "community", "innovation", "creativity"],
     location: {
@@ -1789,14 +1533,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2024-10-05",
     endDate: "2024-11-17",
     brand: "TBD",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1551076805-e1869033e561",
-      photographer: {
-        name: "Nick Fewings",
-        username: "jannerboy62"
-      },
-      source: "Unsplash"
-    },
     tagline: "A pop-up city advancing longevity biotech and science, Oct 5–Nov 17",
     tags: ["longevity", "biotech", "science", "innovation", "zuzalu"],
     location: {
@@ -1843,14 +1579,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2024-10-07",
     endDate: "2024-11-07",
     brand: "TBD",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1598971861713-54ad16a7e72e",
-      photographer: {
-        name: "Mathew Schwartz",
-        username: "cadop"
-      },
-      source: "Unsplash"
-    },
     tagline: "A 50-builder residency with Eigen Layer and Megaeth",
     tags: ["blockchain", "ethereum", "development", "residency", "community"],
     location: {
@@ -1899,14 +1627,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2024-09-30",
     endDate: "2024-11-10",
     brand: "THE MU",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a",
-      photographer: {
-        name: "Julian Yu",
-        username: "julianyu"
-      },
-      source: "Unsplash"
-    },
     tagline: "A community of builders and developers in the heart of Chiang Mai",
     tags: ["development", "community", "blockchain", "technology", "thailand"],
     location: {
@@ -1954,14 +1674,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2024-09-23",
     endDate: "2024-12-23",
     brand: "NETWORK SCHOOL",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1577401239170-897942555fb3",
-      photographer: {
-        name: "Shawn Ang",
-        username: "shawnanggg"
-      },
-      source: "Unsplash"
-    },
     tagline: "Founding an academic community on an island near Singapore, starting with a 90-day pop-up",
     tags: ["education", "community", "network-states", "innovation", "academic"],
     location: {
@@ -2009,14 +1721,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2024-09-16",
     endDate: "2024-10-07",
     brand: "TBD",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1533387520709-752d83de3630",
-      photographer: {
-        name: "Nick Fewings",
-        username: "jannerboy62"
-      },
-      source: "Unsplash"
-    },
     tagline: "A focused space for solving hard problems with collaboration and craftsmanship",
     tags: ["focus", "collaboration", "craftsmanship", "innovation", "portugal"],
     location: {
@@ -2064,14 +1768,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2025-06-21",
     endDate: "2025-07-19",
     brand: "ZANZALU",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1518709766631-a6a7f45921c3",
-      photographer: {
-        name: "sutirta budiman",
-        username: "sutirtab"
-      },
-      source: "Unsplash"
-    },
     tagline: "A community of builders catalyzing a growth ecosystem in Zanzibar",
     tags: ["innovation", "entrepreneurship", "africa", "community", "ecosystem"],
     location: {
@@ -2119,14 +1815,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2025-01-21",
     endDate: "2025-02-21",
     brand: "TBD",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1627894483216-2138af692e32",
-      photographer: {
-        name: "Abel Getachew",
-        username: "abelgetachew"
-      },
-      source: "Unsplash"
-    },
     tagline: "Building Ethereum's future in the heart of Africa",
     tags: ["ethereum", "blockchain", "africa", "innovation", "community"],
     location: {
@@ -2174,14 +1862,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2025-09-20",
     endDate: "2025-10-20",
     brand: "TBD",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1533105079780-92b9be482077",
-      photographer: {
-        name: "Anastasia Taioglou",
-        username: "thenata"
-      },
-      source: "Unsplash"
-    },
     tagline: "A month of innovation on a Greek island paradise",
     tags: ["community", "innovation", "greece", "island", "collaboration"],
     location: {
@@ -2229,14 +1909,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2025-04-22",
     endDate: "2025-05-22",
     brand: "Ipê City",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1483729558449-99ef09a8c325",
-      photographer: {
-        name: "Felipe Dias",
-        username: "felipedias"
-      },
-      source: "Unsplash"
-    },
     tagline: "Building the cities and governments of the future with crypto and AI on Florianópolis",
     tags: ["crypto", "ai", "governance", "innovation", "brazil"],
     location: {
@@ -2284,14 +1956,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2025-05-01",
     endDate: "2025-05-31",
     brand: "TBD",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1470219556762-1771e7f9427d",
-      photographer: {
-        name: "Michelle Tsang",
-        username: "petitemichelle"
-      },
-      source: "Unsplash"
-    },
     tagline: "Reimagining urban innovation in the heart of Motor City",
     tags: ["innovation", "urban-development", "community", "technology", "detroit"],
     location: {
@@ -2339,14 +2003,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2025-02-05",
     endDate: "2025-03-31",
     brand: "BERLINHOUSE",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000",
-      photographer: {
-        name: "Rafael Garcin",
-        username: "rafaelgarcin"
-      },
-      source: "Unsplash"
-    },
     tagline: "A 16-floor community innovation hub in the heart of San Francisco, dedicated to advancing frontier technologies, arts, and sciences",
     tags: ["ai", "neurotech", "longevity", "crypto", "desci", "biotech", "arts"],
     location: {
@@ -2396,14 +2052,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2025-04-04",
     endDate: "2025-05-29",
     brand: "TBD",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1576091160550-2173dba999ef",
-      photographer: {
-        name: "National Cancer Institute",
-        username: "nci"
-      },
-      source: "Unsplash"
-    },
     tagline: "An 8-week longevity zone bringing the world's best minds together to extend human healthspan & solve aging",
     tags: ["longevity", "biotech", "research", "health", "innovation"],
     location: {
@@ -2452,14 +2100,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2024-10-12",
     endDate: "2024-11-10",
     brand: "BLOCKRAVERS",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7",
-      photographer: {
-        name: "Antenna",
-        username: "antenna"
-      },
-      source: "Unsplash"
-    },
     tagline: "A Pop-Up Village for Visionaries, Creators, and Changemakers",
     tags: ["blockchain", "community", "creativity", "music", "culture"],
     location: {
@@ -2507,14 +2147,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2024-11-25",
     endDate: "2024-12-15",
     brand: "TBD",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1518107616985-bd48230d3b20",
-      photographer: {
-        name: "Jezael Melgoza",
-        username: "jezael"
-      },
-      source: "Unsplash"
-    },
     tagline: "Exploring intersection of science, web3 and emerging tech",
     tags: ["science", "web3", "research", "innovation", "knowledge"],
     location: {
@@ -2562,14 +2194,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2025-06-22",
     endDate: "2025-08-16",
     brand: "TBD",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1584017911766-d451b3d0e843",
-      photographer: {
-        name: "National Cancer Institute",
-        username: "nci"
-      },
-      source: "Unsplash"
-    },
     tagline: "A longevity-focused village catalyzing cultural revolution through entertainment and innovation",
     tags: ["longevity", "entertainment", "science", "innovation", "culture"],
     location: {
@@ -2618,14 +2242,6 @@ export const popupCities: PopupCity[] = [
     startDate: "2025-04-01",
     endDate: "2025-04-12",
     brand: "EDGE CITY",
-    coverImage: {
-      url: "https://images.unsplash.com/photo-1580060839134-75a5edca2e99",
-      photographer: {
-        name: "Michael DeStefano",
-        username: "mikedestefano"
-      },
-      source: "Unsplash"
-    },
     tagline: "Exploring Africa's role in the future of networked societies",
     tags: ["africa", "innovation", "network-states", "community", "research"],
     location: {
@@ -2678,14 +2294,6 @@ export const popupCities: PopupCity[] = [
     startDate: "YYYY-MM-DD", // e.g. "2024-06-01"
     endDate: "YYYY-MM-DD", // e.g. "2024-06-30"
     brand: "", // uppercase e.g. "ZUZALU" or "TBD" if unknown
-    coverImage: {
-      url: "", // verified Unsplash URL
-      photographer: {
-        name: "", // photographer's full name
-        username: "" // their Unsplash username
-      },
-      source: "Unsplash"
-    },
     tagline: "", // short description, one line
     tags: [], // array of lowercase strings e.g. ["community", "innovation", "technology"]
     location: {
