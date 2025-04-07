@@ -131,10 +131,10 @@ export const popupCities: PopupCity[] = [
     endDate: "2024-11-10",
     brand: "SHANHAIWOO",
     coverImage: {
-      url: "https://images.unsplash.com/photo-1598971861713-54ad16a7e72e",
+      url: "https://images.unsplash.com/photo-1538428494232-9c0d8a3ab403",
       photographer: {
-        name: "Mathew Schwartz",
-        username: "cadop"
+        name: "Zhang Kaiyv",
+        username: "zhangkaiyv"
       },
       source: "Unsplash"
     },
