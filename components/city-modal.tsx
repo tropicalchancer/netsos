@@ -11,6 +11,7 @@ import { PopupCityModal } from "@/types/popup-city-v2"
 import { Building2, Calendar, Globe, MapPin, X, MessageSquare, Send } from "lucide-react"
 import { formatDateRange, formatDate } from "@/lib/date-utils"
 import { useCityImage } from "@/lib/hooks"
+import { DEFAULT_CITY_IMAGE } from "@/lib/constants"
 
 interface CityModalProps {
   city: PopupCityModal | null
@@ -22,22 +23,10 @@ export function CityModal({ city, isOpen, onClose }: CityModalProps) {
   const { image } = useCityImage(
     city?.location.city || '',
     city?.location.country || '',
-    city ? {
-      url: city.coverImage.url,
-      photographer: city.coverImage.photographer,
-      source: 'Fallback',
-      altDescription: `${city.location.city}, ${city.location.country}`
-    } : {
-      url: '',
-      photographer: { name: '', username: '' },
-      source: 'Fallback',
-      altDescription: ''
-    }
+    city?.coverImage || DEFAULT_CITY_IMAGE
   );
 
-  if (!city) return null
-
-  const currentImage = image || city.coverImage;
+  if (!city) return null;
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -165,18 +154,18 @@ export function CityModal({ city, isOpen, onClose }: CityModalProps) {
           )}
 
           {/* Photo Credit */}
-          <div className="text-sm text-gray-500">
-            Cover Photo by{' '}
-            <a
-              href={`https://unsplash.com/@${currentImage.photographer.username}?utm_source=netsos&utm_medium=referral`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:text-blue-800"
-            >
-              {currentImage.photographer.name}
-            </a>{' '}
-            on{' '}
-            {currentImage.source === 'Unsplash' ? (
+          {image.source === 'Unsplash' && (
+            <div className="text-sm text-gray-500">
+              Cover Photo by{' '}
+              <a
+                href={`https://unsplash.com/@${image.photographer.username}?utm_source=netsos&utm_medium=referral`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-800"
+              >
+                {image.photographer.name}
+              </a>{' '}
+              on{' '}
               <a
                 href="https://unsplash.com/?utm_source=netsos&utm_medium=referral"
                 target="_blank"
@@ -185,10 +174,8 @@ export function CityModal({ city, isOpen, onClose }: CityModalProps) {
               >
                 Unsplash
               </a>
-            ) : (
-              <span>Netsos</span>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </DialogContent>
     </Dialog>

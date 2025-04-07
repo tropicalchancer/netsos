@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { PopupCityCard } from "@/types/popup-city-v2"
 import { formatDateRange } from "@/lib/date-utils"
 import { useCityImage } from "@/lib/hooks"
+import { DEFAULT_CITY_IMAGE } from "@/lib/constants"
 import { Skeleton } from "@/components/ui/skeleton"
 
 interface CityCardProps {
@@ -18,12 +19,7 @@ export function CityCardV2({ city, onClick }: CityCardProps) {
   const { image, isLoading } = useCityImage(
     city.location.city,
     city.location.country,
-    {
-      url: city.coverImage.url,
-      photographer: city.coverImage.photographer,
-      source: 'Fallback',
-      altDescription: `${city.location.city}, ${city.location.country}`
-    }
+    city.coverImage || DEFAULT_CITY_IMAGE
   );
 
   const getStatusColor = (status: PopupCityCard['status']): string => {
@@ -49,8 +45,8 @@ export function CityCardV2({ city, onClick }: CityCardProps) {
           <Skeleton className="w-full h-full" />
         ) : (
           <Image
-            src={image?.url || city.coverImage.url}
-            alt={image?.altDescription || city.name}
+            src={image.url}
+            alt={image.altDescription || city.name}
             fill
             className="object-cover transition-transform duration-300 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
