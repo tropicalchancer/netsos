@@ -2,6 +2,39 @@
 
 import { useState, useEffect, useRef } from "react"
 
+// Rate limiter queue
+let requestQueue: (() => void)[] = [];
+let activeRequests = 0;
+const MAX_CONCURRENT_REQUESTS = 3;
+const REQUEST_DELAY = 500; // ms between requests
+
+function processQueue() {
+  if (requestQueue.length === 0 || activeRequests >= MAX_CONCURRENT_REQUESTS) {
+    return;
+  }
+
+  const nextRequest = requestQueue.shift();
+  if (nextRequest) {
+    activeRequests++;
+    nextRequest();
+    setTimeout(() => {
+      activeRequests--;
+      processQueue();
+    }, REQUEST_DELAY);
+  }
+}
+
+function queueRequest(request: () => void) {
+  return new Promise<void>((resolve) => {
+    const wrappedRequest = () => {
+      request();
+      resolve();
+    };
+    requestQueue.push(wrappedRequest);
+    processQueue();
+  });
+}
+
 export interface CityImage {
   url: string;
   photographer: {
@@ -92,72 +125,74 @@ export function useCityImage(
           throw new Error('Unsplash API key not found');
         }
 
-        console.log('Fetching image for:', { city, country, attempt });
-        const query = `${city} ${country} cityscape landmark`.trim();
-        const response = await fetch(
-          `https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&orientation=landscape&per_page=1`,
-          {
-            headers: {
-              Authorization: `Client-ID ${accessKey}`,
-              'Accept-Version': 'v1'
-            }
-          }
-        );
-
-        if (response.status === 429) {
-          console.error('Rate limit exceeded for Unsplash API');
-          throw new Error('Rate limit exceeded');
-        }
-
-        if (!response.ok) {
-          console.error('Failed to fetch from Unsplash:', response.status, response.statusText);
-          throw new Error(`Failed to fetch image: ${response.status} ${response.statusText}`);
-        }
-
-        const data = await response.json();
-        console.log('Unsplash API response:', data);
-
-        if (!mountedRef.current) return;
-
-        if (data.results?.[0]) {
-          const photo = data.results[0];
-          
-          // Trigger download tracking
-          try {
-            await fetch(`https://api.unsplash.com/photos/${photo.id}/download`, {
+        // Queue the API request
+        await queueRequest(async () => {
+          console.log('Fetching image for:', { city, country, attempt });
+          const query = `${city} ${country} cityscape landmark`.trim();
+          const response = await fetch(
+            `https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&orientation=landscape&per_page=1`,
+            {
               headers: {
                 Authorization: `Client-ID ${accessKey}`,
                 'Accept-Version': 'v1'
               }
-            });
-          } catch (error) {
-            console.warn('Download tracking error:', error);
+            }
+          );
+
+          if (response.status === 429) {
+            console.error('Rate limit exceeded for Unsplash API');
+            throw new Error('Rate limit exceeded');
           }
 
-          const newImage: CachedImage = {
-            url: photo.urls.regular,
-            photographer: {
-              name: photo.user.name,
-              username: photo.user.username
-            },
-            source: 'Unsplash',
-            altDescription: photo.alt_description || `${city}, ${country}`,
-            timestamp: Date.now()
-          };
-
-          // Update cache
-          cache[cacheKey] = newImage;
-          setCache(cache);
-
-          if (mountedRef.current) {
-            console.log('Setting new image:', newImage);
-            setImage(newImage);
-            setError(null);
+          if (!response.ok) {
+            console.error('Failed to fetch from Unsplash:', response.status, response.statusText);
+            throw new Error(`Failed to fetch image: ${response.status} ${response.statusText}`);
           }
-        } else {
-          console.warn('No images found for:', { city, country });
-          throw new Error('No images found');
-        }
+
+          const data = await response.json();
+          console.log('Unsplash API response:', data);
+
+          if (!mountedRef.current) return;
+
+          if (data.results?.[0]) {
+            const photo = data.results[0];
+            
+            // Trigger download tracking
+            try {
+              await fetch(`https://api.unsplash.com/photos/${photo.id}/download`, {
+                headers: {
+                  Authorization: `Client-ID ${accessKey}`,
+                  'Accept-Version': 'v1'
+                }
+              });
+            } catch (error) {
+              console.warn('Download tracking error:', error);
+            }
+
+            const newImage: CachedImage = {
+              url: photo.urls.regular,
+              photographer: {
+                name: photo.user.name,
+                username: photo.user.username
+              },
+              source: 'Unsplash',
+              altDescription: photo.alt_description || `${city}, ${country}`,
+              timestamp: Date.now()
+            };
+
+            // Update cache
+            cache[cacheKey] = newImage;
+            setCache(cache);
+
+            if (mountedRef.current) {
+              console.log('Setting new image:', newImage);
+              setImage(newImage);
+              setError(null);
+            }
+          } else {
+            throw new Error('No images found');
+          }
+        });
       } catch (error) {
         if (!mountedRef.current) return;
         console.error('Error fetching image:', error);
@@ -169,17 +204,6 @@ export function useCityImage(
           }, retryDelay * Math.pow(2, attempt));
           return;
         }
-
-        // Cache and use the fallback image
-        console.log('Using fallback image after all retries failed');
-        const fallbackWithTimestamp: CachedImage = {
-          ...fallbackImage,
-          timestamp: Date.now()
-        };
-        const cache = getCache();
-        const cacheKey = getCacheKey(city, country);
-        cache[cacheKey] = fallbackWithTimestamp;
-        setCache(cache);
 
         setImage(fallbackImage);
         setError(error instanceof Error ? error.message : 'Failed to fetch image');
