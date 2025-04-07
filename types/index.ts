@@ -5,19 +5,6 @@ export interface Location {
     longitude: number
   }
   
-  export interface PopupCity {
-    name: string
-    status: "UPCOMING" | "ON NOW" | "FINISHED"
-    brand: string
-    year: number
-    dateRange: string
-    websiteUrl: string
-    twitterUrl: string | null
-    description: string
-    oneLiner: string
-    location: Location
-  }
-  
   export interface Experiment {
     id: string
     name: string
