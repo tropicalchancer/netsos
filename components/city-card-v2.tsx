@@ -6,6 +6,9 @@ import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { PopupCityCard } from "@/types/popup-city-v2"
 import { formatDateRange } from "@/lib/date-utils"
+import { useCityImage } from "@/lib/hooks"
+import { DEFAULT_CITY_IMAGE } from "@/lib/constants"
+import { Skeleton } from "@/components/ui/skeleton"
 
 interface CityCardProps {
   city: PopupCityCard;
@@ -13,6 +16,12 @@ interface CityCardProps {
 }
 
 export function CityCardV2({ city, onClick }: CityCardProps) {
+  const { image, isLoading } = useCityImage(
+    city.location.city,
+    city.location.country,
+    city.coverImage || DEFAULT_CITY_IMAGE
+  );
+
   const getStatusColor = (status: PopupCityCard['status']): string => {
     switch (status) {
       case "ON_NOW":
@@ -32,13 +41,17 @@ export function CityCardV2({ city, onClick }: CityCardProps) {
       onClick={() => onClick(city)}
     >
       <div className="absolute inset-0">
-        <Image
-          src={city.coverImage.url}
-          alt={city.name}
-          fill
-          className="object-cover transition-transform duration-300 group-hover:scale-105"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        />
+        {isLoading ? (
+          <Skeleton className="w-full h-full" />
+        ) : (
+          <Image
+            src={image.url}
+            alt={image.altDescription || city.name}
+            fill
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
       </div>
 

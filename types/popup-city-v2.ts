@@ -7,7 +7,7 @@ export interface PopupCityCardInfo {
   startDate: string;
   endDate: string;
   brand: string;
-  coverImage: {
+  coverImage?: {
     url: string;
     photographer: {
       name: string;
