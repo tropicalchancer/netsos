@@ -10,7 +10,7 @@ export default function ExperimentsPage() {
       <div className="space-y-4">
         <h1 className="text-4xl font-bold">Popup City Experiments</h1>
         <p className="text-xl text-muted-foreground">
-          Innovative trials and experiments running across our cities
+          Experiments and projects from the popup village realm, both past and present.
         </p>
         <p className="text-muted-foreground">{experiments.length} experiments available</p>
       </div>

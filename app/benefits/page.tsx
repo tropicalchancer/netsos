@@ -10,9 +10,9 @@ export default function BenefitsPage() {
       <div className="container mx-auto px-4 py-8 space-y-8">
         {/* Hero Section */}
         <div className="space-y-4">
-          <h1 className="text-4xl font-bold">Member Benefits</h1>
+          <h1 className="text-4xl font-bold">Benefits</h1>
           <p className="text-xl text-muted-foreground">
-            Exclusive perks and benefits for popup city residents
+            Perks and benefits for popup village residents
           </p>
           <p className="text-muted-foreground">{benefits.length} benefits available</p>
         </div>
