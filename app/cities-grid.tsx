@@ -1,13 +1,13 @@
 'use client'
 
 import { useState, useEffect } from "react"
-import { CityCard } from "@/components/city-card"
+import { CityCardV2 } from "@/components/city-card-v2"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { FilterIcon } from "lucide-react"
-import { popupCities } from "@/data/popup-cities"
+import { popupCities } from "@/data/popup-cities-v2"
 import { CitiesService } from "@/services/cities"
-import { FilterSidebar } from "@/components/filter-sidebar"
+import { Skeleton } from "@/components/ui/skeleton"
 
 type FilterType = 'ALL' | 'ACTIVE' | 'UPCOMING' | 'FINISHED'
 
@@ -17,7 +17,6 @@ export function CitiesGrid() {
   const [search, setSearch] = useState("")
   const [isLoading, setIsLoading] = useState(true)
   const [visibleCount, setVisibleCount] = useState(12)
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
   // Handle scroll events
   useEffect(() => {
@@ -51,15 +50,18 @@ export function CitiesGrid() {
   // Sort cities by status priority: upcoming -> active -> finished
   const sortedAndFilteredCities = CitiesService.filterCities(popupCities, filter, search)
     .sort((a, b) => {
-      const statusOrder = {
-        "UPCOMING": 0,
-        "ON NOW": 1,
-        "FINISHED": 2
-      }
-      const aStatus = CitiesService.getStatus(a.dateRange)
-      const bStatus = CitiesService.getStatus(b.dateRange)
-      return statusOrder[aStatus] - statusOrder[bStatus]
-    })
+      const getStatusPriority = (status: ReturnType<typeof CitiesService.getStatus>) => {
+        switch (status) {
+          case 'UPCOMING': return 0;
+          case 'ON_NOW': return 1;
+          case 'FINISHED': return 2;
+          default: return 3;
+        }
+      };
+      
+      return getStatusPriority(CitiesService.getStatus(a.dateRange)) - 
+             getStatusPriority(CitiesService.getStatus(b.dateRange));
+    });
 
   const hasMore = visibleCount < sortedAndFilteredCities.length
 
@@ -79,10 +81,10 @@ export function CitiesGrid() {
         <Button
           variant="outline"
           className="flex items-center gap-2"
-          onClick={() => setIsSidebarOpen(true)}
+          onClick={() => setFilter(filter === 'ALL' ? 'ACTIVE' : 'ALL')}
         >
           <FilterIcon className="h-4 w-4" />
-          Filters
+          {filter === 'ALL' ? 'Show Active' : 'Show All'}
         </Button>
       </div>
 
@@ -94,7 +96,11 @@ export function CitiesGrid() {
         ) : (
           <>
             {sortedAndFilteredCities.slice(0, visibleCount).map((city) => (
-              <CityCard key={`${city.name}-${city.location.city}-${city.location.country}`} city={city} />
+              <CityCardV2 
+                key={`${city.name}-${city.location.city}-${city.location.country}`} 
+                city={city}
+                onClick={() => {}} // Add proper click handler if needed
+              />
             ))}
           </>
         )}
@@ -105,43 +111,31 @@ export function CitiesGrid() {
           <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
         </div>
       )}
-
-      <FilterSidebar 
-        isOpen={isSidebarOpen}
-        onClose={() => setIsSidebarOpen(false)}
-        activeFilter={filter}
-        onFilterChange={setFilter}
-        cities={popupCities}
-      />
     </div>
   )
 }
 
 function CityCardSkeleton() {
   return (
-    <div className="relative w-full h-[400px] rounded-lg overflow-hidden bg-muted">
-      <div className="absolute inset-0 animate-pulse bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
-      
+    <div className="relative w-full h-[400px] rounded-lg overflow-hidden">
+      <Skeleton className="absolute inset-0" />
       <div className="relative h-full p-6 flex flex-col">
         <div className="mb-auto space-y-4">
-          <div className="w-24 h-6 bg-white/20 rounded-full animate-pulse" />
-          
+          <Skeleton className="w-24 h-6 rounded-full" />
           <div className="flex items-center gap-2">
-            <div className="w-32 h-6 bg-white/20 rounded animate-pulse" />
+            <Skeleton className="w-32 h-6 rounded" />
           </div>
-          
           <div className="space-y-2">
-            <div className="w-48 h-8 bg-white/20 rounded animate-pulse" />
-            <div className="w-full h-4 bg-white/20 rounded animate-pulse" />
+            <Skeleton className="w-48 h-8 rounded" />
+            <Skeleton className="w-full h-4 rounded" />
           </div>
         </div>
-
         <div className="space-y-3">
           <div className="flex items-center gap-2">
-            <div className="w-36 h-4 bg-white/20 rounded animate-pulse" />
+            <Skeleton className="w-36 h-4 rounded" />
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-32 h-4 bg-white/20 rounded animate-pulse" />
+            <Skeleton className="w-32 h-4 rounded" />
           </div>
         </div>
       </div>
@@ -153,8 +147,8 @@ function LoadingState() {
   return (
     <div className="space-y-8">
       <div className="flex items-center justify-between gap-4">
-        <div className="h-9 bg-muted rounded-md animate-pulse w-[300px]" />
-        <div className="h-9 bg-muted rounded-md animate-pulse w-[100px]" />
+        <Skeleton className="h-9 rounded-md w-[300px]" />
+        <Skeleton className="h-9 rounded-md w-[100px]" />
       </div>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {Array(12).fill(0).map((_, i) => (
