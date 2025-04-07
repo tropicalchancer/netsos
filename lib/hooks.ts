@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 
 // Rate limiter queue
-let requestQueue: (() => void)[] = [];
+const requestQueue: (() => void)[] = [];
 let activeRequests = 0;
 const MAX_CONCURRENT_REQUESTS = 3;
 const REQUEST_DELAY = 500; // ms between requests
