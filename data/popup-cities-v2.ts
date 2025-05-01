@@ -2243,7 +2243,7 @@ export const popupCities: PopupCity[] = [
     endDate: "2025-04-12",
     brand: "EDGE CITY",
     tagline: "Exploring Africa's role in the future of networked societies",
-    tags: ["africa", "innovation", "network-states", "community", "research"],
+    tags: ["africa", "innovation", "community", "research"],
     location: {
       city: "Cape Town",
       country: "SOUTH AFRICA"
