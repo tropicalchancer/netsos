@@ -7,6 +7,7 @@ import { FilterSidebarV2 } from './filter-sidebar-v2'
 import { PopupCity, PopupCityCard } from '@/types/popup-city-v2'
 import { Button } from './ui/button'
 import { SlidersHorizontal } from 'lucide-react'
+import { CitiesService } from '@/services/cities'
 
 type FilterType = 'ALL' | 'ACTIVE' | 'UPCOMING' | 'FINISHED'
 
@@ -38,8 +39,8 @@ export function CitiesGridV2({ cities }: CitiesGridProps) {
       })
     }
     
-    // Sort cities by start date
-    filtered.sort((a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime())
+    // Use CitiesService for sorting
+    filtered = CitiesService.sortCitiesByDate(filtered)
     setFilteredCities(filtered)
   }, [cities, selectedFilter])
 
