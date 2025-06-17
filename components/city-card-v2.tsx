@@ -4,15 +4,15 @@ import Image from "next/image"
 import { Calendar, MapPin } from "lucide-react"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { PopupCityCard } from "@/types/popup-city-v2"
+import { PopupCity } from "@/types/popup-city-v2"
 import { formatDateRange } from "@/lib/date-utils"
 import { useCityImage } from "@/lib/hooks"
 import { DEFAULT_CITY_IMAGE } from "@/lib/constants"
 import { Skeleton } from "@/components/ui/skeleton"
 
 interface CityCardProps {
-  city: PopupCityCard;
-  onClick: (city: PopupCityCard) => void;
+  city: PopupCity;
+  onClick: (city: PopupCity) => void;
 }
 
 export function CityCardV2({ city, onClick }: CityCardProps) {
@@ -22,7 +22,9 @@ export function CityCardV2({ city, onClick }: CityCardProps) {
     city.coverImage || DEFAULT_CITY_IMAGE
   );
 
-  const getStatusColor = (status: PopupCityCard['status']): string => {
+  const getStatusColor = (status: PopupCity['status']): string => {
+    if (!status) return "bg-gray-500/80 text-white";
+    
     switch (status) {
       case "ON_NOW":
         return "bg-green-500/80 text-white"
@@ -58,12 +60,14 @@ export function CityCardV2({ city, onClick }: CityCardProps) {
       <div className="relative h-full p-3 sm:p-4 md:p-5 flex flex-col text-white">
         <div className="mb-auto">
           <div className="flex flex-wrap gap-1 mb-2">
-            <Badge 
-              variant="secondary" 
-              className={getStatusColor(city.status) + " px-2 py-0.5 text-xs"}
-            >
-              {city.status.replace('_', ' ')}
-            </Badge>
+            {city.status && (
+              <Badge 
+                variant="secondary" 
+                className={getStatusColor(city.status) + " px-2 py-0.5 text-xs"}
+              >
+                {city.status.replace('_', ' ')}
+              </Badge>
+            )}
             <Badge 
               variant="outline" 
               className="bg-white/10 text-white border-white/20 px-2 py-0.5 text-xs"

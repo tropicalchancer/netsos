@@ -7,7 +7,8 @@ export function formatDateRange(startDate: string, endDate: string): string {
   // Same month
   const sameMonth = start.getMonth() === end.getMonth() && sameYear
 
-  const monthNames = ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr']
+  // Correct month order
+  const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
   
   if (sameMonth) {
     // May 3-18, 2025
@@ -23,6 +24,6 @@ export function formatDateRange(startDate: string, endDate: string): string {
 
 export function formatDate(date: string): string {
   const d = new Date(date)
-  const monthNames = ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr']
+  const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
   return `${monthNames[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`
 } 

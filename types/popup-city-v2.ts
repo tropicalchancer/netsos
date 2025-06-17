@@ -3,7 +3,7 @@ export interface PopupCityCardInfo {
   id: string;
   name: string;
   slug: string;
-  status: 'UPCOMING' | 'ON_NOW' | 'FINISHED';
+  status?: "UPCOMING" | "ON_NOW" | "FINISHED";
   startDate: string;
   endDate: string;
   brand: string;

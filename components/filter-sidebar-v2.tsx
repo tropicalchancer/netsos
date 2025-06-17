@@ -1,6 +1,8 @@
-import { Button } from "@/components/ui/button"
-import { X } from "lucide-react"
-import { PopupCity } from "@/types/popup-city-v2"
+import { PopupCity } from '@/types/popup-city-v2'
+import { CitiesService } from '@/services/cities'
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet'
+import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 
 type FilterType = 'ALL' | 'ACTIVE' | 'UPCOMING' | 'FINISHED'
 
@@ -16,7 +18,8 @@ export function FilterSidebarV2({ isOpen, onClose, activeFilter, onFilterChange,
   const getCityCount = (filter: FilterType) => {
     if (filter === 'ALL') return cities.length;
     
-    return cities.filter(city => {
+    const citiesWithStatus = CitiesService.getCitiesWithStatus(cities);
+    return citiesWithStatus.filter(city => {
       switch (filter) {
         case 'ACTIVE':
           return city.status === 'ON_NOW'
@@ -38,50 +41,32 @@ export function FilterSidebarV2({ isOpen, onClose, activeFilter, onFilterChange,
   ]
 
   return (
-    <>
-      {/* Backdrop */}
-      {isOpen && (
-        <div 
-          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
-          onClick={onClose}
-        />
-      )}
-      
-      {/* Sidebar */}
-      <div 
-        className={`fixed inset-y-0 right-0 w-80 bg-background border-l transform transition-transform duration-200 ease-in-out z-50 ${
-          isOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
-      >
-        <div className="flex flex-col h-full">
-          <div className="p-4 border-b">
-            <div className="flex items-center justify-between">
-              <h2 className="text-lg font-semibold">Filters</h2>
-              <Button variant="ghost" size="icon" onClick={onClose}>
-                <X className="h-4 w-4" />
+    <Sheet open={isOpen} onOpenChange={onClose}>
+      <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+        <SheetHeader>
+          <SheetTitle>Filter Cities</SheetTitle>
+        </SheetHeader>
+        <div className="py-4">
+          <div className="space-y-2">
+            {filters.map(filter => (
+              <Button
+                key={filter.value}
+                variant={activeFilter === filter.value ? "default" : "ghost"}
+                className={cn(
+                  "w-full justify-between",
+                  activeFilter === filter.value && "bg-primary text-primary-foreground"
+                )}
+                onClick={() => onFilterChange(filter.value)}
+              >
+                <span>{filter.label}</span>
+                <span className="text-sm text-muted-foreground">
+                  {getCityCount(filter.value)}
+                </span>
               </Button>
-            </div>
-          </div>
-
-          <div className="flex-1 overflow-y-auto p-4">
-            <div className="space-y-2">
-              {filters.map((filter) => (
-                <Button
-                  key={filter.value}
-                  variant={activeFilter === filter.value ? "default" : "outline"}
-                  className="w-full justify-between"
-                  onClick={() => onFilterChange(filter.value)}
-                >
-                  <span>{filter.label}</span>
-                  <span className="ml-2 px-2 py-0.5 text-sm rounded-full bg-background/10">
-                    {getCityCount(filter.value)}
-                  </span>
-                </Button>
-              ))}
-            </div>
+            ))}
           </div>
         </div>
-      </div>
-    </>
+      </SheetContent>
+    </Sheet>
   )
 } 

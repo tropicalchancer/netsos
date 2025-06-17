@@ -1,13 +1,13 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { PopupCity } from '@/types/popup-city-v2'
+import { CitiesService } from '@/services/cities'
 import { CityCardV2 } from './city-card-v2'
 import { CityModal } from './city-modal'
 import { FilterSidebarV2 } from './filter-sidebar-v2'
-import { PopupCity, PopupCityCard } from '@/types/popup-city-v2'
 import { Button } from './ui/button'
 import { SlidersHorizontal } from 'lucide-react'
-import { CitiesService } from '@/services/cities'
 
 type FilterType = 'ALL' | 'ACTIVE' | 'UPCOMING' | 'FINISHED'
 
@@ -17,38 +17,20 @@ interface CitiesGridProps {
 
 export function CitiesGridV2({ cities }: CitiesGridProps) {
   const [selectedFilter, setSelectedFilter] = useState<FilterType>('ALL')
-  const [filteredCities, setFilteredCities] = useState<PopupCity[]>(cities)
+  const [filteredCities, setFilteredCities] = useState<PopupCity[]>([])
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [selectedCity, setSelectedCity] = useState<PopupCity | null>(null)
 
   useEffect(() => {
-    let filtered = [...cities]
-    
-    if (selectedFilter !== 'ALL') {
-      filtered = cities.filter(city => {
-        switch (selectedFilter) {
-          case 'ACTIVE':
-            return city.status === 'ON_NOW'
-          case 'UPCOMING':
-            return city.status === 'UPCOMING'
-          case 'FINISHED':
-            return city.status === 'FINISHED'
-          default:
-            return true
-        }
-      })
-    }
-    
-    // Use CitiesService for sorting
-    filtered = CitiesService.sortCitiesByDate(filtered)
-    setFilteredCities(filtered)
-  }, [cities, selectedFilter])
+    // Use the service to get cities with current status
+    const citiesWithStatus = CitiesService.getCitiesWithStatus(cities);
+    let filtered = CitiesService.filterCities(citiesWithStatus, selectedFilter, '');
+    filtered = CitiesService.sortCitiesByDate(filtered);
+    setFilteredCities(filtered);
+  }, [cities, selectedFilter]);
 
-  const handleCityClick = (city: PopupCityCard) => {
-    const fullCityData = cities.find(c => c.id === city.id)
-    if (fullCityData) {
-      setSelectedCity(fullCityData)
-    }
+  const handleCityClick = (city: PopupCity) => {
+    setSelectedCity(city)
   }
 
   return (
