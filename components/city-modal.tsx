@@ -9,7 +9,7 @@ import {
 import { Badge } from "@/components/ui/badge"
 import { PopupCityModal } from "@/types/popup-city-v2"
 import { Building2, Calendar, Globe, MapPin, X, MessageSquare, Send } from "lucide-react"
-import { formatDateRange, formatDate } from "@/lib/date-utils"
+import { formatDateRange } from "@/lib/date-utils"
 import { useCityImage } from "@/lib/hooks"
 import { DEFAULT_CITY_IMAGE } from "@/lib/constants"
 
@@ -129,29 +129,6 @@ export function CityModal({ city, isOpen, onClose }: CityModalProps) {
               </span>
             </div>
           </div>
-
-          {/* Notes Section */}
-          {city.notes && (
-            <div className="border rounded-lg p-4">
-              <h3 className="text-lg font-semibold mb-4">Notes</h3>
-              <div className="space-y-4">
-                <p className="text-muted-foreground">{city.notes.description}</p>
-                
-                {city.notes.estimatedRange && (
-                  <div className="flex justify-between items-center border-t pt-4">
-                    <span>Estimated {city.notes.estimatedRange.timeUnit} cost</span>
-                    <span className="font-semibold">
-                      {city.notes.estimatedRange.currency} {city.notes.estimatedRange.min.toLocaleString()} - {city.notes.estimatedRange.max.toLocaleString()}
-                    </span>
-                  </div>
-                )}
-                
-                <div className="text-xs text-muted-foreground text-right italic">
-                  Last updated: {formatDate(city.notes.lastUpdated)}
-                </div>
-              </div>
-            </div>
-          )}
 
           {/* Photo Credit */}
           {image.source === 'Unsplash' && (
