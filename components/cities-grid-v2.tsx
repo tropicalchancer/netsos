@@ -6,6 +6,7 @@ import { CitiesService } from '@/services/cities'
 import { CityCardV2 } from './city-card-v2'
 import { CityModal } from './city-modal'
 import { FilterSidebarV2 } from './filter-sidebar-v2'
+import { CitiesRefreshButton } from './cities-refresh-button'
 import { Button } from './ui/button'
 import { SlidersHorizontal } from 'lucide-react'
 
@@ -15,11 +16,17 @@ interface CitiesGridProps {
   cities: PopupCity[]
 }
 
-export function CitiesGridV2({ cities }: CitiesGridProps) {
+export function CitiesGridV2({ cities: initialCities }: CitiesGridProps) {
+  const [cities, setCities] = useState<PopupCity[]>(initialCities)
   const [selectedFilter, setSelectedFilter] = useState<FilterType>('ALL')
   const [filteredCities, setFilteredCities] = useState<PopupCity[]>([])
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [selectedCity, setSelectedCity] = useState<PopupCity | null>(null)
+
+  // Update cities when prop changes (server-side data)
+  useEffect(() => {
+    setCities(initialCities)
+  }, [initialCities])
 
   useEffect(() => {
     // Use the service to get cities with current status
@@ -33,10 +40,15 @@ export function CitiesGridV2({ cities }: CitiesGridProps) {
     setSelectedCity(city)
   }
 
+  const handleCitiesUpdate = (newCities: PopupCity[]) => {
+    setCities(newCities)
+  }
+
   return (
     <div className="space-y-8">
-      {/* Filter Button */}
-      <div className="flex justify-end">
+      {/* Filter and Refresh Controls */}
+      <div className="flex justify-between items-center">
+        <CitiesRefreshButton onCitiesUpdate={handleCitiesUpdate} />
         <Button
           variant="outline"
           size="sm"

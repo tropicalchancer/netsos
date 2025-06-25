@@ -8,4 +8,7 @@ export const DEFAULT_CITY_IMAGE: CityImage = {
   },
   source: 'Fallback',
   altDescription: 'Default city image'
-}; 
+};
+
+// Google Apps Script API Configuration
+export const GOOGLE_APPS_SCRIPT_URL = process.env.NEXT_PUBLIC_GOOGLE_APPS_SCRIPT_URL || 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE' 

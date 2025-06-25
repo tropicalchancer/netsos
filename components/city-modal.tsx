@@ -42,9 +42,11 @@ export function CityModal({ city, isOpen, onClose }: CityModalProps) {
         <div className="space-y-6">
           {/* Status and Tags */}
           <div className="flex flex-wrap gap-2">
-            <Badge variant="outline" className="text-sm">
-              {city.status.replace('_', ' ')}
-            </Badge>
+            {city.status && (
+              <Badge variant="outline" className="text-sm">
+                {city.status.replace('_', ' ')}
+              </Badge>
+            )}
             {city.tags.map(tag => (
               <Badge key={tag} variant="secondary" className="text-sm">
                 {tag}
