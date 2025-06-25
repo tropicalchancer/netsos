@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Netsos",
+  title: "netsos",
   description: "Index of popup villages",
   icons: {
     icon: [
