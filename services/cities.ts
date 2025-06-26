@@ -12,11 +12,8 @@ let citiesCache: PopupCity[] | null = null;
 let cacheTimestamp: number = 0;
 const CACHE_DURATION = 60 * 1000; // 60 seconds
 
-// Fallback to static data if API is not configured
-let staticCities: PopupCity[] | null = null;
-
 export class CitiesService {
-    // New method to fetch cities from Google Apps Script API
+    // Method to fetch cities from Google Apps Script API
     static async fetchCities(): Promise<PopupCity[]> {
         // Check if we have valid cached data
         const now = Date.now();
@@ -24,15 +21,9 @@ export class CitiesService {
             return citiesCache;
         }
 
-        // If API URL is not configured, use static data as fallback
+        // If API URL is not configured, throw an error
         if (GOOGLE_APPS_SCRIPT_URL === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
-            if (!staticCities) {
-                // Dynamically import static data as fallback
-                const { popupCities } = await import('@/data/popup-cities-v2');
-                staticCities = popupCities;
-            }
-            console.warn('Using static data fallback - configure NEXT_PUBLIC_GOOGLE_APPS_SCRIPT_URL for live data');
-            return staticCities;
+            throw new Error('Google Apps Script URL not configured. Please set NEXT_PUBLIC_GOOGLE_APPS_SCRIPT_URL in your environment variables.');
         }
 
         try {
@@ -63,13 +54,8 @@ export class CitiesService {
                 return citiesCache;
             }
             
-            // Fallback to static data if no cache available
-            if (!staticCities) {
-                const { popupCities } = await import('@/data/popup-cities-v2');
-                staticCities = popupCities;
-            }
-            console.warn('Using static data fallback due to fetch error');
-            return staticCities;
+            // Re-throw the error if no cache available
+            throw new Error(`Failed to fetch cities data: ${error instanceof Error ? error.message : 'Unknown error'}`);
         }
     }
 

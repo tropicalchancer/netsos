@@ -1,4 +1,4 @@
-# Sheet-as-DB Migration Progress & Next Steps (as of June 25, 2025)
+# Sheet-as-DB Migration Progress & Next Steps (as of January 2025)
 
 ## What We've Done
 - **Exported static data** from `data/popup-cities-v2.ts` to a Google Sheet, keeping the schema as close as possible to the original TypeScript type.
@@ -18,6 +18,12 @@
   - Fixed deployment settings: Web app is now deployed as "Anyone" (public access)
   - The deployed URL is set in `.env.local` as `NEXT_PUBLIC_GOOGLE_APPS_SCRIPT_URL`
   - The app now fetches live data from the Google Sheet via the Apps Script endpoint
+- **✅ COMPLETED: Phase 4 Cleanup** - Successfully removed all static data dependencies:
+  - Removed fallback imports from `services/cities.ts`
+  - Updated `data/index.ts` to remove popup-cities-v2 export
+  - Deleted `data/popup-cities-v2.ts` file
+  - Verified build and TypeScript compilation still work
+  - App now fully relies on Google Sheet API with proper error handling
 
 ## How to Interact With the New System
 
@@ -92,10 +98,12 @@
    - Update all frontend data consumers to use this service.
    > **Learning:** Decoupling the data source from the frontend allows for real-time updates and easier future migrations.
 
-### Phase 4: Cleanup & Validation 🔄
-4. **Remove the old static data and update types.** 🔄
+### Phase 4: Cleanup & Validation ✅
+4. **Remove the old static data and update types.** ✅
    - ✅ Delete `CitiesDataProvider` component (no longer needed)
-   - ⏳ Delete `data/popup-cities-v2.ts` (after confirming live data works)
+   - ✅ Delete `data/popup-cities-v2.ts` (successfully removed)
+   - ✅ Remove fallback imports from `services/cities.ts`
+   - ✅ Update `data/index.ts` to remove popup-cities-v2 export
    - ⏳ Update the `PopupCity` type to match the new, cleaned-up schema.
    - ⏳ Refactor any code that relied on removed/renamed fields.
    - ⏳ Add a CI test that fetches the sheet's JSON and validates it against the `PopupCity` type (to catch schema drift).
@@ -123,7 +131,7 @@
 | 1 | Finalize sheet schema & validation | ✅ Complete | Schema ready, validation rules added |
 | 2 | Apps Script API | ✅ Complete | rowToCard, doGet, deploy, CORS working |
 | 3 | Backend fetch/cache/transform | ✅ Complete | Server-side fetching with 60s cache |
-| 4 | Cleanup & type update | 🔄 In Progress | Remove static data after testing |
+| 4 | Cleanup & type update | ✅ Complete | Static data removed, build verified |
 | 5 | Testing & docs | 🔄 In Progress | Test live updates, update documentation |
 | 6 | (Optional) Enhancements | 🔄 Pending | Real-time sync, admin tools, analytics |
 
