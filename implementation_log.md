@@ -14,13 +14,43 @@
   - Removed complex client-side data provider (`CitiesDataProvider`)
   - Maintained fallback to static data for development
   - **Build successful** - All pages now fetch data server-side with 60-second caching
+- **✅ Google Apps Script API is now live!**
+  - Fixed deployment settings: Web app is now deployed as "Anyone" (public access)
+  - The deployed URL is set in `.env.local` as `NEXT_PUBLIC_GOOGLE_APPS_SCRIPT_URL`
+  - The app now fetches live data from the Google Sheet via the Apps Script endpoint
+
+## How to Interact With the New System
+
+### Editing/Adding Popup Villages
+- **Open the Google Sheet** (your "database")
+- **Add a new row** for a new popup village, or edit an existing row to update
+- **Required columns:** Make sure to fill in all required fields (see sheet header and `PopupCity` type)
+- **Tags:** Comma-separated (e.g., `community, innovation, technology`)
+- **Booleans:** Use `TRUE`/`FALSE` or `1`/`0` for fields like `is_published`
+- **Save:** Google Sheets auto-saves; changes appear in the app within ~60 seconds (or immediately after clicking "Refresh" in the app)
+
+### API Access
+- **API Endpoint:** The deployed Apps Script URL (ending in `/exec`) returns all popup villages as JSON
+- **You can fetch this data:**
+  - In your Next.js app (already set up)
+  - With `curl`, Postman, or any HTTP client:
+    ```bash
+    curl 'https://script.google.com/macros/s/your-script-id/exec'
+    ```
+- **The `/api/cities` endpoint** in your Next.js app proxies this data for client-side refreshes
+
+### Best Practices
+- **Column names:** Don't change column headers unless you also update the Apps Script and your app's types
+- **Data validation:** Use Google Sheets' data validation features (dropdowns, date pickers) to prevent bad data
+- **Backups:** Google Sheets has version history, but consider exporting backups if your data is critical
+- **Testing:** After adding/editing a row, use the "Refresh" button in your app to see the update immediately
+- **Security:** The API is public. Do not put sensitive/private data in the sheet
 
 ## What To Do Next (Shareable for Any AI Assistant)
-1. **Configure the Google Apps Script URL** - Set `NEXT_PUBLIC_GOOGLE_APPS_SCRIPT_URL` environment variable with your actual Google Apps Script deployment URL
-2. **Test live updates** - Make changes in the Google Sheet and verify they appear in the app without redeploy
-3. **Remove the old static data file** (`data/popup-cities-v2.ts`) once you confirm the live data is working
-4. **Add error handling** - Consider adding error boundaries and better error messages for production
-5. **Optimize caching** - Adjust cache duration based on how frequently your sheet data changes
+1. **Test live updates** - Make changes in the Google Sheet and verify they appear in the app without redeploy
+2. **Remove the old static data file** (`data/popup-cities-v2.ts`) once you confirm the live data is working
+3. **Add error handling** - Consider adding error boundaries and better error messages for production
+4. **Optimize caching** - Adjust cache duration based on how frequently your sheet data changes
 
 ---
 
@@ -48,7 +78,7 @@
 2. **Create a Google Apps Script to serve the sheet as JSON.** ✅
    - Write a `rowToCard` function that transforms a sheet row into the nested JSON structure the app expects (including system fields like `id`, `slug`, `createdAt`, `updatedAt`).
    - Add a `doGet()` handler that returns all rows as JSON, with proper CORS headers.
-   - Deploy as a Web App (execute as Me).
+   - Deploy as a Web App (execute as Me, access: Anyone).
    - Test the endpoint and document its URL and expected response format.
    > **Learning:** Apps Script lets you turn a Google Sheet into a simple REST API. The transformation step ensures the frontend doesn't need to change for the new data source.
 
