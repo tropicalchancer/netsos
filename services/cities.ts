@@ -27,9 +27,9 @@ export class CitiesService {
         }
 
         try {
-            const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
-                cache: 'no-store' // Disable caching to always get fresh data
-            });
+            // Use a cache-busting query parameter instead of no-store
+            const cacheBuster = process.env.NODE_ENV === 'development' ? `?_cb=${Date.now()}` : '';
+            const response = await fetch(`${GOOGLE_APPS_SCRIPT_URL}${cacheBuster}`);
             
             if (!response.ok) {
                 throw new Error(`Failed to fetch cities: ${response.status} ${response.statusText}`);

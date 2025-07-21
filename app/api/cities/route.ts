@@ -3,6 +3,8 @@ import { CitiesService } from '@/services/cities'
 
 export async function GET() {
   try {
+    // Clear cache to ensure fresh data when using the refresh button
+    CitiesService.clearCache();
     const cities = await CitiesService.fetchCities()
     
     if (!Array.isArray(cities)) {
