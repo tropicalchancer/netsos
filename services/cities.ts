@@ -27,7 +27,9 @@ export class CitiesService {
         }
 
         try {
-            const response = await fetch(GOOGLE_APPS_SCRIPT_URL);
+            const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+                cache: 'no-store' // Disable caching to always get fresh data
+            });
             
             if (!response.ok) {
                 throw new Error(`Failed to fetch cities: ${response.status} ${response.statusText}`);

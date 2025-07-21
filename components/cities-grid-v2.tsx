@@ -7,6 +7,7 @@ import { CityCardV2 } from './city-card-v2'
 import { CityModal } from './city-modal'
 import { FilterSidebarV2 } from './filter-sidebar-v2'
 import { CitiesRefreshButton } from './cities-refresh-button'
+import { ErrorBoundary } from './ui/error-boundary'
 import { Button } from './ui/button'
 import { SlidersHorizontal } from 'lucide-react'
 
@@ -16,7 +17,7 @@ interface CitiesGridProps {
   cities: PopupCity[]
 }
 
-export function CitiesGridV2({ cities: initialCities }: CitiesGridProps) {
+function CitiesGridContent({ cities: initialCities }: CitiesGridProps) {
   const [cities, setCities] = useState<PopupCity[]>(initialCities)
   const [selectedFilter, setSelectedFilter] = useState<FilterType>('ALL')
   const [filteredCities, setFilteredCities] = useState<PopupCity[]>([])
@@ -87,5 +88,13 @@ export function CitiesGridV2({ cities: initialCities }: CitiesGridProps) {
         cities={cities}
       />
     </div>
+  )
+}
+
+export function CitiesGridV2(props: CitiesGridProps) {
+  return (
+    <ErrorBoundary>
+      <CitiesGridContent {...props} />
+    </ErrorBoundary>
   )
 } 
