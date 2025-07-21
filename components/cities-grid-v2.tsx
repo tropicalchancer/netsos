@@ -6,7 +6,6 @@ import { CitiesService } from '@/services/cities'
 import { CityCardV2 } from './city-card-v2'
 import { CityModal } from './city-modal'
 import { FilterSidebarV2 } from './filter-sidebar-v2'
-import { CitiesRefreshButton } from './cities-refresh-button'
 import { ErrorBoundary } from './ui/error-boundary'
 import { Button } from './ui/button'
 import { SlidersHorizontal } from 'lucide-react'
@@ -41,15 +40,10 @@ function CitiesGridContent({ cities: initialCities }: CitiesGridProps) {
     setSelectedCity(city)
   }
 
-  const handleCitiesUpdate = (newCities: PopupCity[]) => {
-    setCities(newCities)
-  }
-
   return (
     <div className="space-y-8">
-      {/* Filter and Refresh Controls */}
-      <div className="flex justify-between items-center">
-        <CitiesRefreshButton onCitiesUpdate={handleCitiesUpdate} />
+      {/* Filter Controls */}
+      <div className="flex justify-end items-center">
         <Button
           variant="outline"
           size="sm"
